@@ -14,9 +14,7 @@ class Article extends PT_Controller {
         $data['title'] = 'News archive';
         $data['news'] = $this->news_model->get_all_news();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('news/index', $data);
-        $this->load->view('templates/footer');
+        $this->view_template('news/index',$data);
     }
 
     /**
@@ -31,7 +29,7 @@ class Article extends PT_Controller {
         }
 
         $data['title'] = $data['news_item']['TITLE'];
-        $this->view('news/view');
+        $this->view_template('news/view');
     }
 
     /**
@@ -54,9 +52,7 @@ class Article extends PT_Controller {
 
             $data['title'] = $data['news_item']['TITLE'];
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('news/edit', $data);
-            $this->load->view('templates/footer');
+            $this->view_template('news/edit',$data);
 
         }
         else
@@ -67,9 +63,8 @@ class Article extends PT_Controller {
                 'TITLE' => $this->input->post('title'),
                 'TEXT' => $this->input->post('content')
             );
-            $this->news_model->update_news($slug, $data);
-            redirect('/article');
-            $this->view('news/edit');
+            if($this->news_model->update_news($slug, $data)) redirect('/article');
+            $this->view_template('news/edit');
         }
     }
 
@@ -96,7 +91,7 @@ class Article extends PT_Controller {
 
         if ($this->form_validation->run() === FALSE)
         {
-            $this->view('news/create');
+            $this->view_template('news/create');
         }
         else
         {

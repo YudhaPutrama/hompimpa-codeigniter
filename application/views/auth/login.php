@@ -27,7 +27,9 @@
                         <input type="password" name="password" placeholder="Password">
                     </div>
                 </div>
-                <button class="ui fluid large blue submit button" type="submit">Login</button>
+                <button class="ui fluid large teal submit button" type="submit">Login</button>
+                <button class="ui fluid large blue button" type="submit">Login with Facebook</button>
+                <button class="ui fluid large blue button" type="submit">Login with Twitter</button>
             </div>
         </form>
 

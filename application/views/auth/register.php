@@ -30,7 +30,7 @@
                         <input type="password" name="password" placeholder="Password">
                     </div>
                 </div>
-                <div class="ui fluid large teal submit button">Register</div>
+                <div class="ui fluid large blue submit button">Register</div>
             </div>
 
             <div class="ui error message"></div>

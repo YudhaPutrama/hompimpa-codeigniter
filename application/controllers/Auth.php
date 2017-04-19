@@ -11,7 +11,7 @@ class Auth extends PT_Controller {
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->library('authentication');
+        $this->load->library('facebook');
     }
 
     public function index(){
@@ -42,7 +42,7 @@ class Auth extends PT_Controller {
         $this->form_validation->set_rules('password','Password','required');
 
         if ($this->form_validation->run() === FALSE){
-            $this->view('auth/login');
+            $this->view_template('auth/login');
 //            $this->load->view('templates/header.php');
 //            $this->load->view('auth/login');
 //            $this->load->view('templates/footer.php');
@@ -52,7 +52,30 @@ class Auth extends PT_Controller {
         }
     }
 
+    public function fb_login(){
+        $data['user'] = array();
+
+        // Check if user is logged in
+        if ($this->facebook->is_authenticated())
+        {
+            // User logged in, get user details
+            $user = $this->facebook->request('get', '/me?fields=id,name,email');
+            if (!isset($user['error']))
+            {
+                $data['user'] = $user;
+            }
+
+        }
+
+        // display view
+        $this->load->view('examples/web', $data);
+    }
+
+    public function twitter(){
+
+    }
+
     public function register(){
-        $this->view('auth/register');
+        $this->view_template('auth/register');
     }
 }

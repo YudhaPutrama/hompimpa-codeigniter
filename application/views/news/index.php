@@ -1,6 +1,6 @@
   <div class="ui fixed inverted menu">
     <div class="ui container">
-      <a href="#" class="header item">
+      <a href="<?php echo base_url();?>" class="header item">
         Hompimpa
       </a>
       <a href="#" class="item">Home</a>
@@ -26,11 +26,11 @@
   </div>
   <div class="ui main text center aligned container">
       <h1 class="ui header"><?php echo "Article Post"; ?></h1>
-      <div class="ui right floated main menu">
-        <a class="add popup icon item" data-content="Tambah" href="<?php echo site_url('article/create'); ?>">
-          <i class="add icon"></i>
-        </a>
-      </div>
+<!--      <div class="ui right floated main menu">-->
+<!--        <a class="add popup icon item" data-content="Tambah" href="--><?php //echo site_url('article/create'); ?><!--">-->
+<!--          <i class="add icon"></i>-->
+<!--        </a>-->
+<!--      </div>-->
       <!--<h3 class="first">Container</h3>
       <p>A container is a fixed width element that wraps your site's content. It remains a constant size and uses <b>margin</b> to center. Containers are the simplest way to center page content inside a grid.</code>-->
       <!--</p>-->
