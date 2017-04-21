@@ -3,7 +3,16 @@
 /**
  * @property  CI_DB_query_builder db
  */
-class News_model extends PT_Model {
+class Article_model extends PT_Model {
+    protected $table_name = "ARTIKEl";
+
+    public $id;
+    public $slug;
+    public $judul;
+    public $konten;
+    public $kode_kategori;
+    public $id_pengguna;
+    public $hide;
     
     /**
 	 * Get some articles

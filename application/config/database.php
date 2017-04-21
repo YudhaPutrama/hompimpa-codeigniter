@@ -76,8 +76,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=trivalier.id)(PORT=49161))(CONNECT_DATA=(SID=XE)))',
-	'username' => 'tubes',
-	'password' => 'tubes',
+	'username' => 'hompimpa',
+	'password' => 'hompimpa',
 	'database' => '',
 	'dbdriver' => 'oci8',
 	'dbprefix' => '',

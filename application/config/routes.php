@@ -54,7 +54,14 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // Auth Routing
+$route['login'] = 'auth/login'; // view login page
+$route['register'] = 'auth/login'; // view login page
+$route['logout'] = 'auth/logout'; // view login page
+$route['login/facebook'] = 'auth/facebook';
+$route['login/twitter'] = 'auth/twitter';
 
+// Profile Routing
+$route['me'] = 'user/me';
 
 // Article Routing
 $route['article/create'] = 'article/create';

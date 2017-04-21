@@ -29,7 +29,7 @@ class Article extends PT_Controller {
         }
 
         $data['title'] = $data['news_item']['TITLE'];
-        $this->view_template('news/view');
+        $this->load->view('artikel/detail');
     }
 
     /**

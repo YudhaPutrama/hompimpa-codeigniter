@@ -35,4 +35,8 @@ class Ajax extends PT_Controller {
     public function list_gallery(){
 
     }
+
+    public function list_notification(){
+
+    }
 }

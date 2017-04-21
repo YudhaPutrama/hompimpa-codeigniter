@@ -3,6 +3,7 @@
 /**
  * @property  CI_Form_validation form_validation
  * @property  Authentication authentication
+ * @property  Facebook facebook
  */
 class Auth extends PT_Controller {
 
@@ -27,8 +28,8 @@ class Auth extends PT_Controller {
 //        echo password_verify("Kurniawan", "$2y$10$5aDj9PSOoWfj/MIqzAvekulnsqI8QohC2A4fxzvrOiPgH3tIaKj.q");
 //        $this->authentication->set_auth(12);
 //        echo $this->authentication->login('YUDHAPUTRAMA',"Kurniawan");
-        var_dump($this->authentication->is_logged());
-        var_dump($this->authentication->get_user());
+//        var_dump($this->authentication->is_logged());
+//        var_dump($this->authentication->get_user());
 //        $this->authentication->clear_auth();
 //        var_dump($this->authentication->is_logged());
 //        $this->authentication->guest_redirect_to();
@@ -58,6 +59,7 @@ class Auth extends PT_Controller {
         // Check if user is logged in
         if ($this->facebook->is_authenticated())
         {
+            echo $this->facebook->is_authenticated();
             // User logged in, get user details
             $user = $this->facebook->request('get', '/me?fields=id,name,email');
             if (!isset($user['error']))
