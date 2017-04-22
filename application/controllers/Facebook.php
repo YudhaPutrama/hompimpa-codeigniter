@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * @property  Facebook facebook
  */
-class Example extends CI_Controller {
+class Facebook extends CI_Controller {
 
 	public function __construct()
 	{
