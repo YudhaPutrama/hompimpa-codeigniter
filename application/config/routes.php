@@ -56,7 +56,8 @@ $route['translate_uri_dashes'] = FALSE;
 // Auth Routing
 $route['login'] = 'auth/login'; // view login page
 $route['register'] = 'auth/login'; // view login page
-$route['logout'] = 'auth/logout'; // view login page
+$route['logout'] = 'user/logout'; // view logout page
+$route['auth/logout'] = 'user/logout'; // view logout page
 $route['login/facebook'] = 'auth/facebook';
 $route['login/twitter'] = 'auth/twitter';
 
@@ -82,45 +83,48 @@ $route['score/(:any)/update'] = 'score/update/$1';
 
 // Admin Module
 $route['admin'] = 'admin';
-$route['admin/article'] = '';
-$route['admin/article/new'] =  '';
-$route['admin/article/(:any)'] =  '';
-$route['admin/article/(:any)/update'] =  '';
-$route['admin/article/(:any)/delete'] =  '';
-$route['admin/category'] =  '';
-$route['admin/category/new'] =  '';
-$route['admin/category/(:any)'] =  '';
-$route['admin/category/(:any)/update'] =  '';
-$route['admin/category/(:any)/delete'] =  '';
-$route['admin/tag'] =  '';
-$route['admin/tag/new'] =  '';
-$route['admin/tag/(:any)'] =  '';
-$route['admin/tag/(:any)/update'] =  '';
-$route['admin/tag/(:any)/delete'] =  '';
-$route['admin/comment'] =  '';
-$route['admin/game'] = '';
-$route['admin/game/score'] = '';
-$route['admin/game/new'] = '';
-$route['admin/game/(:any)'] = '';
-$route['admin/game/(:any)/update'] = '';
-$route['admin/game/(:any)/delete'] = '';
-$route['admin/user'] = '';
-$route['admin/user/role'] = '';
-$route['admin/user/new'] = '';
-$route['admin/user/(:any)'] = '';
-$route['admin/user/(:any)/update'] = '';
-$route['admin/user/(:any)/delete'] = '';
-$route['admin/ranking'] = '';
-
-
+$route['admin/profile'] = 'admin';
+$route['admin/article'] = 'admin/article';
+$route['admin/article/new'] =  'admin/article-new';
+$route['admin/article/(:any)'] =  'admin/article_view/$1';
+$route['admin/article/(:any)/update'] =  'admin/article_update/$1';
+$route['admin/article/(:any)/delete'] =  'admin/article_delete/$1';
+$route['admin/category'] =  'admin/category';
+$route['admin/category/new'] =  'admin/category_new';
+$route['admin/category/(:any)'] =  'admin/category_view/$1';
+$route['admin/category/(:any)/update'] =  'admin/category_update/$1';
+$route['admin/category/(:any)/delete'] =  'admin/category_delete/$1';
+$route['admin/tag'] =  'admin/tag';
+$route['admin/tag/new'] =  'admin/tag_new';
+$route['admin/tag/(:any)'] =  'admin/tag_view/$1';
+$route['admin/tag/(:any)/update'] =  'admin/tag_update/$1';
+$route['admin/tag/(:any)/delete'] =  'admin/tag_delete/$1';
+$route['admin/comment'] =  'admin/comment';
+$route['admin/game'] = 'admin/game';
+$route['admin/game/score'] = 'admin/game_score';
+$route['admin/game/new'] = 'admin/game_new';
+$route['admin/game/(:any)'] = 'admin/game_view/$1';
+$route['admin/game/(:any)/update'] = 'admin/game_update/$1';
+$route['admin/game/(:any)/delete'] = 'admin/game_delete/$1';
+$route['admin/user'] = 'admin/user';
+$route['admin/user/role'] = 'admin/role';
+$route['admin/user/new'] = 'admin/user_new';
+$route['admin/user/(:any)'] = 'admin/user_view/$1';
+$route['admin/user/(:any)/update'] = 'admin/user_update/$1';
+$route['admin/user/(:any)/delete'] = 'admin/user_delete/$1';
+$route['admin/ranking'] = 'admin/ranking';
 
 // Category Module
-$route['category/(:any)'] = '';
+$route['category/(:any)'] = 'article/category/$1';
 // Tag Module
-$route['tag/(:any)'] = '';
+$route['tag/(:any)'] = 'article/tag/$1';
 
 // Gallery Module
-$route['gallery'] = '';
-$route['gallery/(:any)'] = '';
+$route['gallery'] = 'gallery';
+$route['gallery/(:any)'] = 'gallery/view/$1';
 
-// $route['(:any)'] = 'home/index';
+// Gallery Module
+$route['notifications'] = 'user/notifications';
+
+// Article Module
+ $route['(:any)'] = 'article/view/$1';
