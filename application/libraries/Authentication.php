@@ -4,12 +4,13 @@
  * Author : Kurniawan Yudha Putrama
  * Email : kurniawan.yudha.p@gmail.com
  * Date : 18 April 2017
+ *
  */
 
 
 class Authentication {
     /**
-     * @var CI_Controller
+     * @var PT_Controller
      */
     private $CI;
 
@@ -104,7 +105,8 @@ class Authentication {
         } else {
             $this->clear_auth();
         }
-        return false;
+        $this->CI->session->set_flashdata('login_error','Username / Password salah');
+        redirect($this->config['guest_redirect']);
     }
 
     /**
