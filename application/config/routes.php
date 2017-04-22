@@ -123,4 +123,4 @@ $route['tag/(:any)'] = '';
 $route['gallery'] = '';
 $route['gallery/(:any)'] = '';
 
-// $route['(:any)'] = '';
+// $route['(:any)'] = 'home/index';
