@@ -1,5 +1,5 @@
 <?php
-class GameSession_model extends PT_Model {
+class Gamesession_model extends PT_Model {
     protected $table_name = "SESI_PEMAINAN";
 
     public $id;
