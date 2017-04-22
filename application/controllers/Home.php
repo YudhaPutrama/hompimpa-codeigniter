@@ -1,11 +1,14 @@
 <?php
 class Home extends PT_Controller {
     public function index(){
-        $this->view_template('homepage');
+//        $this->view_template('home');
+        $this->load->view('home');
     }
+
     public function sticky(){
         $this->load->view('sticky');
     }
+
     public function login(){
         $this->authentication->set_auth(5);
         redirect("home/test_guest");
@@ -19,4 +22,5 @@ class Home extends PT_Controller {
         $this->authentication->clear_auth();
         $this->authentication->guest_redirect_to();
     }
+
 }

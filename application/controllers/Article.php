@@ -11,10 +11,10 @@ class Article extends PT_Controller {
      *  List of articles
      */
     public function index(){
-        $data['title'] = 'News archive';
-        $data['news'] = $this->news_model->get_all_news();
+//        $data['title'] = 'News archive';
+//        $data['news'] = $this->article_model->get_all_news();
 
-        $this->view_template('news/index',$data);
+        $this->load->view('article/list');
     }
 
     /**
@@ -105,6 +105,4 @@ class Article extends PT_Controller {
             redirect('/article');
         }
     }
-
-
 }
