@@ -18,21 +18,23 @@ class PT_Controller extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        if($this->need_auth){
+            $this->need_login();
+            $this->need_admin_level();
+        }
     }
 
     public function need_login(){
         if ($this->authentication->is_logged()==false){
+            $this->session->set_flashdata('login_error','Login terlebih dahulu untuk mengakses halaman');
             redirect($this->config->item('auth_redirect_to'));
         }
     }
 
-
-    protected function view_template($view, $data = array()) {
-        if (isset($data['title'])=== FALSE){
-            $data['title'] = "Hompimpa";
+    public function need_admin_level(){
+        if ($this->authentication->verify_role('ADMIN')){
+            $this->session->set_flashdata('login_error','Need admin level to access page');
+            redirect($this->config->item('auth_redirect_to'));
         }
-        $this->load->view('templates/header.php',$data);
-        $this->load->view($view, $data);
-        $this->load->view('templates/footer.php');
     }
 }
