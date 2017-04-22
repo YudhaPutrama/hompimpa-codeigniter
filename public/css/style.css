@@ -1,5 +1,5 @@
 body {
-    background-color: #DADADA;
+    background-color: #FEFEFE;
 }
 body > .grid {
     height: 100%;
@@ -122,6 +122,6 @@ h3.ui.center.header {
     margin-top: 2em;
 }
 .ui.footer.segment {
-    margin: 5em 0em 0em;
+    /*margin: 5em 0em 0em;*/
     padding: 5em 0em;
 }
