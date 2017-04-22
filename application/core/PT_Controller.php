@@ -3,6 +3,8 @@
 /**
  * @property  CI_Config config
  * @property  CI_Session session
+ * @property  CI_Input input
+ * @property  CI_Form_validation form_validation
  * @property  Authentication authentication
  *
  * @property Article_model article_model
@@ -15,6 +17,7 @@ class PT_Controller extends CI_Controller {
      * @var bool
      */
     protected $need_auth = false;
+
 
     public function __construct() {
         parent::__construct();

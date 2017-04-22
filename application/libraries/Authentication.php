@@ -72,6 +72,11 @@ class Authentication {
         return $this->CI->session->has_userdata($this->config['session_name']);
     }
 
+
+    public function is_guest(){
+        return !$this->is_logged();
+    }
+
     /**
      * Get user data
      *
@@ -84,7 +89,7 @@ class Authentication {
         $userid = $this->CI->session->userdata($this->config['session_name']);
 //        var_dump($this->CI->session->get_userdata());
 //        var_dump($this->config['session_name']);
-        var_dump($userid);
+//        var_dump($userid);
 //        die();
         $query = $this->CI->db->get_where($this->config['table'], array($this->config['identifier']=>$userid));
         return $query->row_array();

@@ -21,8 +21,8 @@ class Article_model extends PT_Model {
 	 * @return	mixed
 	 */
     public function get_all_news($limit = 0) {
-        $query = $this->db->get("NEWS");
-        // $query = $this->db->query("SELECT * FROM news");
+        $query = $this->db->get($this->table_name);
+        // $query = $this->db->query("SELECT * FROM $this->table_name");
         return $query->result_array();
 
         
@@ -35,7 +35,7 @@ class Article_model extends PT_Model {
 	 * @return	mixed|string[]
 	 */
     public function get_news_by_slug($slug) {
-        $query = $this->db->get_where('NEWS', array('SLUG' => $slug));
+        $query = $this->db->get_where($this->table_name, array('SLUG' => $slug));
         // $query = $this->db->query("SELECT * FROM NEWS WHERE slug='".$slug."'");
         return $query->row_array();
     }
@@ -47,7 +47,7 @@ class Article_model extends PT_Model {
 	 * @return	mixed|string[]
 	 */
     public function get_news_by_id($id) {
-        $query = $this->db->get_where('NEWS', array('ID' => $id));
+        $query = $this->db->get_where($this->table_name, array('ID' => $id));
         return $query->row_array();
     }
 
@@ -62,7 +62,7 @@ class Article_model extends PT_Model {
 //            .$data['TITLE']."','"
 //            .$data['SLUG']."','"
 //            .$data['TEXT']."')");
-        $query = $this->db->insert('NEWS', $data);
+        $query = $this->db->insert($this->table_name, $data);
         return $query;
     }
 
@@ -92,7 +92,7 @@ class Article_model extends PT_Model {
 	 * @return	mixed
 	 */
     public function delete_news($slug) {
-        $query = "DELETE FROM NEWS WHERE SLUG='".$slug."'";
+        $query = "DELETE FROM ".$this->table_name." WHERE SLUG='".$slug."'";
         return $this->db->query($query);
     }
 
@@ -112,7 +112,11 @@ class Article_model extends PT_Model {
 	 *
 	 * @return	mixed
 	 */
-    public function get_count_news(){
-        return $this->db->query("SELECT SUM_NEWS FROM DUAL");
+    public function get_count_news($userId=null){
+        if ($userId==null)
+            return $this->db->query("SELECT JUMLAH_ARTIKEL FROM DUAL");
+        else {
+            return $this->db->query("SELECT JUMLAH_ARTIKEL FROM DUAL");
+        }
     }
 }

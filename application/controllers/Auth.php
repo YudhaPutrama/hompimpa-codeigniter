@@ -13,6 +13,9 @@ class Auth extends PT_Controller {
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->library('facebook');
+        if ($this->authentication->is_logged()){
+            redirect('/me');
+        }
     }
 
     public function index(){
@@ -53,6 +56,32 @@ class Auth extends PT_Controller {
         }
     }
 
+    public function register() {
+        /**
+         * @var array
+         */
+        $post = $this->input->post();
+        if (count($post)>0){
+            $this->form_validation->set_rules('username','Username','required');
+            $this->form_validation->set_rules('email','Email','required|valid_email');
+            $this->form_validation->set_rules('password','Password','required');
+            if ($this->form_validation->run()){
+                $user = new User_model();
+                $user->username = strtolower($post['username']);
+                $user->password = password_hash($post['password'], PASSWORD_BCRYPT);
+                $user->email = $post['email'];
+                $this->session->set_flashdata('register_error',$this->form_validation->error_string());
+                if($user->save()){
+                    $this->session->set_flashdata('login_message','Pendaftaran sukses, Silahkan login');
+                    redirect('auth/login');
+                };
+            } else {
+
+            }
+        }
+        $this->view_template('auth/register');
+    }
+
     public function fb_login(){
         $data['user'] = array();
 
@@ -72,10 +101,7 @@ class Auth extends PT_Controller {
     }
 
     public function twitter() {
-    }
 
-    public function register() {
-        $this->view_template('auth/register');
     }
 
     protected function view_template($view, $data = array()) {

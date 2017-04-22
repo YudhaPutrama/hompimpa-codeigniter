@@ -9,7 +9,7 @@
                 Daftar Hompimpa Challenge
             </div>
         </h2>
-
+        <?php echo validation_errors(); ?>
         <?php if (isset($error)){ ?>
             <div class="ui negative message">
                 <!--            <i class="close icon"></i>-->

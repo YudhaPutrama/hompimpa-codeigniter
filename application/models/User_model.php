@@ -53,6 +53,11 @@ class User_model extends PT_Model {
         }
     }
 
+    public function get_by_username($username){
+        $query = $this->db->where('USERNAME',$username)->get($this->table_name);
+        return $query->row_array();
+    }
+
     public function verify_password(){
 
     }
