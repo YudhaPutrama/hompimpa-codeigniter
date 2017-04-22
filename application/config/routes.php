@@ -63,9 +63,64 @@ $route['login/twitter'] = 'auth/twitter';
 // Profile Routing
 $route['me'] = 'user/me';
 
+// Search Module
+$route['search/(:any)'] = 'article/search/$1';
+
 // Article Routing
-$route['article/create'] = 'article/create';
-$route['article/(:any)'] = 'article/view/$1';
-$route['article/(:any)/edit'] = 'article/edit/$1';
-$route['article/(:any)/delete'] = 'article/delete/$1';
-$route['article'] = 'article';
+//$route['article/(:any)'] = 'article/view/$1';
+//$route['article'] = 'article';
+
+// Game Module
+$route['game'] = 'game';
+$route['game/(:any)'] = 'game/detail/$1';
+$route['game/(:any)/play'] = 'game/play/$1';
+
+// Score Module
+$route['score'] = 'score';
+$route['score/(:any)'] = 'score/detail/$1';
+$route['score/(:any)/update'] = 'score/update/$1';
+
+// Admin Module
+$route['admin'] = 'admin';
+$route['admin/article'] = '';
+$route['admin/article/new'] =  '';
+$route['admin/article/(:any)'] =  '';
+$route['admin/article/(:any)/update'] =  '';
+$route['admin/article/(:any)/delete'] =  '';
+$route['admin/category'] =  '';
+$route['admin/category/new'] =  '';
+$route['admin/category/(:any)'] =  '';
+$route['admin/category/(:any)/update'] =  '';
+$route['admin/category/(:any)/delete'] =  '';
+$route['admin/tag'] =  '';
+$route['admin/tag/new'] =  '';
+$route['admin/tag/(:any)'] =  '';
+$route['admin/tag/(:any)/update'] =  '';
+$route['admin/tag/(:any)/delete'] =  '';
+$route['admin/comment'] =  '';
+$route['admin/game'] = '';
+$route['admin/game/score'] = '';
+$route['admin/game/new'] = '';
+$route['admin/game/(:any)'] = '';
+$route['admin/game/(:any)/update'] = '';
+$route['admin/game/(:any)/delete'] = '';
+$route['admin/user'] = '';
+$route['admin/user/role'] = '';
+$route['admin/user/new'] = '';
+$route['admin/user/(:any)'] = '';
+$route['admin/user/(:any)/update'] = '';
+$route['admin/user/(:any)/delete'] = '';
+$route['admin/ranking'] = '';
+
+
+
+// Category Module
+$route['category/(:any)'] = '';
+// Tag Module
+$route['tag/(:any)'] = '';
+
+// Gallery Module
+$route['gallery'] = '';
+$route['gallery/(:any)'] = '';
+
+// $route['(:any)'] = '';
