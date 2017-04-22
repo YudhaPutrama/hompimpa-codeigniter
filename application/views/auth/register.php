@@ -6,39 +6,50 @@
 
         <h2 class="ui teal">
             <div class="content">
-                Register
+                Daftar Hompimpa Challenge
             </div>
         </h2>
+
+        <?php if (isset($error)){ ?>
+            <div class="ui negative message">
+                <!--            <i class="close icon"></i>-->
+                <div class="header">
+                    <?php echo $error; ?>
+                </div>
+                <!--            <p>That offer has expired</p>-->
+            </div>
+        <?php } ?>
 
         <form class="ui large form" method="post">
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>
-                        <input type="text" name="username" placeholder="Username">
+                        <input type="text" name="username" placeholder="Username" required>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui left icon input">
-                        <i class="user icon"></i>
-                        <input type="text" name="email" placeholder="E-mail">
+                        <i class="at icon"></i>
+                        <input type="text" name="email" placeholder="E-mail" required>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Password" required>
                     </div>
                 </div>
-                <div class="ui fluid large blue submit button">Register</div>
+                <button class="ui fluid large blue submit button" type="submit">Daftar</button>
+
             </div>
 
-            <div class="ui error message"></div>
+
 
         </form>
 
         <div class="ui message">
-            New to us? <a href="<?php echo base_url('auth/login');?>">Sign In</a>
+            Sudah punya akun? <a href="<?php echo base_url('auth/login');?>">Masuk</a>
         </div>
     </div>
 </div>

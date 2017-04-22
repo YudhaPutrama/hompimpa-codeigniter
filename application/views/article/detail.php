@@ -107,7 +107,7 @@
             /*text-align: center;*/
             padding: 0em;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 0px;
+            /*margin-bottom: 0px;*/
             border-bottom: none;
             background-color: #000000;
             background-position: 50% 50%;
