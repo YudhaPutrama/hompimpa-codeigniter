@@ -4,20 +4,40 @@
  * @property  User_model user_model
  */
 class User extends PT_Controller {
+    /**
+     * User constructor.
+     */
+    public function __construct() {
+        parent::__construct();
+        $this->need_login();
+    }
+
     public function index(){
 
     }
 
     public function me(){
-        $data = new User_model();
+        $user = $this->authentication->get_user();
+        $data = [
+            'user' => $user
+        ];
 
-        $data->username = "yudhaputrama";
-        $data->password = password_hash("yudhaputrama", PASSWORD_BCRYPT);
-        $data->email = "yudhaputrama.edu@gmail.com";
-
-        echo $data->save();
-
-        var_dump($data);
-
+        $this->load->view('profile',$data);
     }
+
+    public function view($username){
+        $user = $this->user_model->get_by_username('YUDHAPUTRAMA');
+        var_dump($user);
+    }
+
+    public function logout(){
+        $this->authentication->clear_auth();
+        var_dump($this->session->userdata());
+        if ($this->authentication->is_guest()){
+            redirect('/auth/login');
+        } else {
+            redirect('/me');
+        }
+    }
+
 }
