@@ -10,38 +10,40 @@
                 <a href="/article" class="item">Artikel</a>
                 <a href="/gallery" class="item">Galeri</a>
                 <div class="ui right floated item">
+<?php if(isset($user)){ ?>
                     <a class="ui dropdown item">
-                        <i class="icon mail"></i> Notifikasi
-                        <div class="ui red label">22</div>
+                        <i class="icon mail"></i> <?php echo count($notifications)>0?"Notifikasi":"Tidak ada notifikasi" ?>
+                        <?php if(isset($notifications)){ ?>
+                        <?php if (count($notifications)>0){ ?><div class="ui red label"><?php echo count($notifications); ?></div><?php } ?>
                         <div class="menu">
                             <div class="header">
                                 Mengajak Kamu Bermain
                             </div>
+                            <?php foreach ($notifications as $notification){?>
                             <div class="item">
-                                <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
-                                Jenny Hess
+                                <img class="ui avatar image" src="/images/avatar/small/<?php echo $notification['avatar']; ?>">
+                                <?php echo $notification['name']; ?>
                             </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="/images/avatar/small/elliot.jpg">
-                                Elliot Fu
-                            </div>
-                            <div class="item">
-                                <img class="ui avatar image" src="/images/avatar/small/stevie.jpg">
-                                Stevie Feliciano
-                            </div>
+                            <?php } ?>
                         </div>
+                        <?php }?>
                     </a>
-                    <a  class="ui dropdown item">
-                        Kurniawan Yudha Putrama <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <div class="item">Profil</div>
-                            <div class="item">Pengaturan</div>
+                    <div  class="ui dropdown item">
+                        <?php echo is_null($user['NAMA_LENGKAP'])?$user["USERNAME"]:$user["NAMA_LENGKAP"] ?> <i class="dropdown icon"></i>
+                        <div class="menu ">
+                            <div class="item"><a href="/me">Profil</a></div>
+                            <div class="item"><a href="/setting">Pengaturan</a></div>
                             <div class="divider"></div>
-                            <div class="item">
-                                <i class="sign out icon"></i>Keluar
+                            <div class="item" >
+                                <a href="/logout"><i class="sign out icon"></i>Keluar</a>
                             </div>
                         </div>
-                    </a>
+                    </div>
+
+<?php } else { ?>
+                    <a href="/register" class="item">Daftar</a>
+                    <a href="/login" class="item">Masuk</a>
+<?php } ?>
                 </div>
 
 
@@ -55,7 +57,7 @@
                         HOMPIMPA
                     </h1>
                     <h2>Ketahui dan Mainkan Permainan Tradisional</h2>
-                    <div class="ui huge primary button">Jelajahi <i class="right arrow icon"></i></div>
+                    <a class="ui huge primary button" href="/article">Jelajahi <i class="right arrow icon"></i></a>
                 </div>
             </div>
 
@@ -70,11 +72,6 @@
                             <img src="assets/images/wireframe/white-image.png" class="ui large bordered rounded image">
                         </div>
                     </div>
-<!--                    <div class="row">-->
-<!--                        <div class="center aligned column">-->
-<!--                            <a class="ui huge button">Check Them Out</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
                 </div>
             </div>
 
@@ -103,12 +100,13 @@
                     <h4 class="ui horizontal header divider">
                         <a href="#">Artikel Terbaru</a>
                     </h4>
-                    <h3 class="ui header">Breaking The Grid, Grabs Your Attention</h3>
-                    <p>Instead of focusing on content creation and hard work, we have learned how to master the art of doing nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic and worth your attention.</p>
-                    <a class="ui large button">Read More</a>
-                    <h3 class="ui header">Did We Tell You About Our Bananas?</h3>
-                    <p>Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but its really true. It took years of gene splicing and combinatory DNA research, but our bananas can really dance.</p>
-                    <a class="ui large button">I'm Still Quite Interested</a>
+<?php foreach ($posts as $post) { ?>
+                    <h3 class="ui header"><?php echo $post['JUDUL'] ?></h3>
+                    <p><?php echo $post['KONTEN']->read(500) ?></p>
+                    <a class="ui large button" href="<?php echo site_url($post['SLUG']) ?>">Read More</a>
+<?php } ?>
+
+
                 </div>
             </div>
 
@@ -119,13 +117,17 @@
                     <div class="three wide column">
                         <h4 class="ui inverted header">Kategori Teratas</h4>
                         <div class="ui inverted link list">
-                            <a href="#" class="item">Sitemap</a>
+                            <?php foreach ($top_categories as $category) {
+                                echo "<a href=\"".site_url('category/'.$category['KODE_KATEGORI'])."\" class=\"item\" >".$category['NAMA_KATEGORI']."</a >";
+                            } ?>
                         </div>
                     </div>
                     <div class="three wide column">
                         <h4 class="ui inverted header">Permainan Teratas</h4>
                         <div class="ui inverted link list">
-                            <a href="#" class="item">Artikel</a>
+                            <?php foreach ($top_games as $game) {
+                                echo "<a class=\"item\" >".$game['NAMA_PERMAINAN']."</a >";
+                            } ?>
                         </div>
                     </div>
                     <div class="seven wide column">

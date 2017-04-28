@@ -5,8 +5,15 @@ class Article extends PT_Controller {
     /**
      *  List of articles
      */
-    public function index(){
-        $this->load->view('article/list');
+    public function index($page=null){
+        if (is_null($page)){
+            $this->set_data('posts', $this->article_model->get_all_news(10));
+        } else {
+            $this->set_data('posts', $this->article_model->get_all_news(10,$page*10));
+        }
+        $this->set_data('page_max',$this->article_model->get_count_news());
+//        var_dump($this->article_model->get_count_news());
+        $this->load->view('article/list', $this->data);
     }
 
     /**
@@ -15,16 +22,15 @@ class Article extends PT_Controller {
      * @param null $slug
      */
     public function view($slug = NULL){
-
-//        echo $slug;
-//        die();
-        $data['news_item'] = $this->article_model->get_all_news($slug);
-        if (empty($data['news_item'])){
+        $article = $this->article_model->get_news_by_slug($slug);
+        if (empty($article)){
                 show_404();
         }
-
-        $data['title'] = $data['news_item']['TITLE'];
-        $this->load->view('artikel/detail');
+        $this->get_userdata();
+        $this->set_data('post', $article);
+        $this->set_data('comments', []);
+//        var_dump($this->data['post']);
+        $this->load->view('article/detail',$this->data);
     }
 
     /**

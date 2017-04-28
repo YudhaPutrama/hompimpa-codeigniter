@@ -4,7 +4,7 @@
  * @property  CI_DB_query_builder db
  */
 class Article_model extends PT_Model {
-    protected $table_name = "ARTIKEl";
+    protected $table_name = "ARTIKEL";
 
     public $id;
     public $slug;
@@ -12,20 +12,20 @@ class Article_model extends PT_Model {
     public $konten;
     public $kode_kategori;
     public $id_pengguna;
+    public $id_permainan;
     public $hide;
-    
+
     /**
 	 * Get some articles
 	 *
 	 * @param	integer $limit	Limit result of data
 	 * @return	mixed
 	 */
-    public function get_all_news($limit = 0) {
-        $query = $this->db->get($this->table_name);
+    public function get_all_news($limit = null, $offset=null) {
+        $query = $this->db->get($this->table_name, $limit, $offset);
         // $query = $this->db->query("SELECT * FROM $this->table_name");
+//        return $query->result_array();
         return $query->result_array();
-
-        
     }
 
     /**
@@ -57,32 +57,27 @@ class Article_model extends PT_Model {
 	 * @param	string[]    $data	Value for data field
 	 * @return	bool
 	 */
-    public function set_news($data) {
-//        $query =  $this->db->query("INSERT INTO NEWS(TITLE, SLUG, TEXT) VALUES('"
-//            .$data['TITLE']."','"
-//            .$data['SLUG']."','"
-//            .$data['TEXT']."')");
-        $query = $this->db->insert($this->table_name, $data);
-        return $query;
-    }
+    public function save_news() {
+        if (is_null($this->judul)|| is_null($this->id_pengguna))return false;
+        if (is_null($this->slug)) $this->slug=url_title($this->judul);
+        $data = [
+            "ID"=>$this->id,
+            "SLUG"=>$this->slug,
+            "JUDUL"=>$this->judul,
+            "KONTEN"=>$this->konten,
+            "ID_PENGGUNA"=>$this->id_pengguna,
+            "KODE_KATEGORI"=>$this->kode_kategori,
+            "ID_PERMAINAN"=>$this->id_permainan
+        ];
 
-    /**
-	 * Update article data
-	 *
-	 * @param	string    $slug	New value for article
-     * @param	string[]    $data	New value for article
-	 * @return	bool
-	 */
-    public function update_news($slug, $data){
-
-//        $query = "UPDATE NEWS SET "
-//            ."TITLE='".$data['TITLE']."',"
-//            ."TEXT='".$data['TEXT']."' "
-//            // ."SLUG='".$data['SLUG']."' "
-//            ."WHERE SLUG='".$slug."'";
-//        return $this->db->query($query);
-        $query = $this->db->where('SLUG', $slug);
-        return $query->update('NEWS', $data);
+        if (is_null($this->id)==false){
+            return $this->db->insert($this->table_name, $data);
+        }
+        $row = $this->db->get_where($this->table_name, "ID=".$this->id)->num_rows();
+        if ($row>0){
+            return $this->db->where("ID",$this->id)->update($this->table_name, $data);
+        }
+        return $this->db->insert($this->table_name, $data);
     }
 
     /**
@@ -91,9 +86,15 @@ class Article_model extends PT_Model {
 	 * @param	string    $slug	New value for article
 	 * @return	mixed
 	 */
-    public function delete_news($slug) {
-        $query = "DELETE FROM ".$this->table_name." WHERE SLUG='".$slug."'";
-        return $this->db->query($query);
+    public function delete_news($identifier) {
+        if (is_numeric($identifier)){
+            $query = "DELETE FROM ".$this->table_name." WHERE ID='".$identifier."'";
+            return $this->db->query($query);
+        } else {
+            $query = "DELETE FROM ".$this->table_name." WHERE SLUG='".$identifier."'";
+            return $this->db->query($query);
+        }
+
     }
 
     /**
@@ -107,6 +108,13 @@ class Article_model extends PT_Model {
 
     }
 
+    public function get_articles_users(){
+        $query = "SELECT A.SLUG, A.JUDUL, P.NAMA_LENGKAP PENGGUNA, A.NUM_LIKE, A.CREATED_AT
+        FROM ARTIKEL A, PENGGUNA P WHERE A.ID_PENGGUNA=P.ID";
+        $query = $this->db->query($query);
+        return $query->result_array();
+    }
+
     /**
 	 * Get number of news using oracle function
 	 *
@@ -114,9 +122,9 @@ class Article_model extends PT_Model {
 	 */
     public function get_count_news($userId=null){
         if ($userId==null)
-            return $this->db->query("SELECT JUMLAH_ARTIKEL FROM DUAL");
+            return $this->db->query("SELECT JUMLAH_ARTIKEL FROM DUAL")->row_array()['JUMLAH_ARTIKEL'];
         else {
-            return $this->db->query("SELECT JUMLAH_ARTIKEL FROM DUAL");
+            return $this->db->query("SELECT JUMLAH_ARTIKEL FROM DUAL")->row_array()['JUMLAH_ARTIKEL'];
         }
     }
 }

@@ -5,7 +5,15 @@
                 Masuk ke Hompimpa
             </div>
         </h2>
-
+        <?php if (isset($message)){ ?>
+            <div class="ui info message">
+                <!--            <i class="close icon"></i>-->
+                <div class="header">
+                    <?php echo $message; ?>
+                </div>
+                <!--            <p>That offer has expired</p>-->
+            </div>
+        <?php } else ?>
         <?php if (isset($error)){ ?>
         <div class="ui negative message">
 <!--            <i class="close icon"></i>-->

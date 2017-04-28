@@ -37,7 +37,13 @@ class User_model extends PT_Model {
 //        $query = "INSERT INTO PENGGUNA (USERNAME, PASSWORD, EMAIL) VALUES ('".$username."','".$password."','".$email."')";
 //        return $this->db->query($query);
         if ($this->id==null){
-            return $this->db->insert($this->table_name,$data);
+            try{
+                $this->db->insert($this->table_name,$data);
+            } catch (Exception $e){
+                var_dump($e);
+            }
+
+            return true;
         } else {
             $query = $this->db->where("ID",$this->id);
             return $query->update($this->table_name,$data);
@@ -58,16 +64,13 @@ class User_model extends PT_Model {
         return $query->row_array();
     }
 
-    public function verify_password(){
-
-    }
-
-    public function login_user($username, $password){
-
-    }
-
-    public function change_password(){
-
+    public function change_password($id, $password)
+    {
+        $data = [
+            "PASSWORD" => password_hash($password, PASSWORD_BCRYPT)
+        ];
+        $query = $this->db->where("ID", $id);
+        return $query->update($this->table_name, $data);
     }
 
 }

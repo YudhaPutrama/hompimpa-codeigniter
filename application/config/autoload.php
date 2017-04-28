@@ -29,7 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | 7. Models
 |
 */
-
+require APPPATH."models/items/UserItem.php";
 /*
 | -------------------------------------------------------------------
 |  Auto-load Packages

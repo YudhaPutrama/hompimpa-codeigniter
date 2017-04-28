@@ -1,4 +1,4 @@
-<?php $this->load->view('templates/admin/header'); ?>
+<?php include "templates/header.php" ?>
 <!--maincontent-->
 <div class="mainWrap navslide">
     <div class="ui equal width left aligned padded grid stackable">
@@ -562,4 +562,4 @@
     </div>
 </div>
 <!--maincontent-->
-<?php $this->load->view('templates/admin/footer'); ?>
+<?php include "templates/footer.php" ?>

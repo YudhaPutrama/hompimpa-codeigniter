@@ -3,6 +3,7 @@
 /**
  * @property  User_model user_model
  */
+
 class User extends PT_Controller {
     /**
      * User constructor.
@@ -13,7 +14,6 @@ class User extends PT_Controller {
     }
 
     public function index(){
-
     }
 
     public function me(){
@@ -21,7 +21,7 @@ class User extends PT_Controller {
         $data = [
             'user' => $user
         ];
-
+        $a = new UserItem();
         $this->load->view('profile',$data);
     }
 
@@ -34,6 +34,7 @@ class User extends PT_Controller {
         $this->authentication->clear_auth();
         var_dump($this->session->userdata());
         if ($this->authentication->is_guest()){
+            $this->set_data('login_message','Berhasil keluar');
             redirect('/auth/login');
         } else {
             redirect('/me');

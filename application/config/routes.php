@@ -55,7 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 // Auth Routing
 $route['login'] = 'auth/login'; // view login page
-$route['register'] = 'auth/login'; // view login page
+$route['register'] = 'auth/register'; // view login page
 $route['logout'] = 'user/logout'; // view logout page
 $route['auth/logout'] = 'user/logout'; // view logout page
 $route['login/facebook'] = 'auth/facebook';
@@ -69,7 +69,8 @@ $route['search/(:any)'] = 'article/search/$1';
 
 // Article Routing
 //$route['article/(:any)'] = 'article/view/$1';
-//$route['article'] = 'article';
+$route['article'] = 'article';
+$route['article/(:any)'] = 'article/index/$1';
 
 // Game Module
 $route['game'] = 'game';
@@ -85,7 +86,7 @@ $route['score/(:any)/update'] = 'score/update/$1';
 $route['admin'] = 'admin';
 $route['admin/profile'] = 'admin';
 $route['admin/article'] = 'admin/article';
-$route['admin/article/new'] =  'admin/article-new';
+$route['admin/article/new'] =  'admin/article_new';
 $route['admin/article/(:any)'] =  'admin/article_view/$1';
 $route['admin/article/(:any)/update'] =  'admin/article_update/$1';
 $route['admin/article/(:any)/delete'] =  'admin/article_delete/$1';
@@ -113,6 +114,7 @@ $route['admin/user/(:any)'] = 'admin/user_view/$1';
 $route['admin/user/(:any)/update'] = 'admin/user_update/$1';
 $route['admin/user/(:any)/delete'] = 'admin/user_delete/$1';
 $route['admin/ranking'] = 'admin/ranking';
+$route['admin/notification'] = 'admin/notification';
 
 // Category Module
 $route['category/(:any)'] = 'article/category/$1';

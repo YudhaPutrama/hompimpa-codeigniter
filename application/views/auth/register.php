@@ -9,7 +9,7 @@
                 Daftar Hompimpa Challenge
             </div>
         </h2>
-        <?php echo validation_errors(); ?>
+
         <?php if (isset($error)){ ?>
             <div class="ui negative message">
                 <!--            <i class="close icon"></i>-->
@@ -25,13 +25,13 @@
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>
-                        <input type="text" name="username" placeholder="Username" required>
+                        <input type="text" name="username" placeholder="Username" required value="<?php echo set_value('username');?>">
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="at icon"></i>
-                        <input type="text" name="email" placeholder="E-mail" required>
+                        <input type="text" name="email" placeholder="E-mail" required value="<?php echo set_value('email');?>">
                     </div>
                 </div>
                 <div class="field">

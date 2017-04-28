@@ -22,7 +22,7 @@ class Auth extends PT_Controller {
         redirect('/auth/login');
     }
 
-    public function keygenerate(){
+//    public function keygenerate(){
 //        $this->load->library('encryption');
 //        echo bin2hex($this->encryption->create_key(16));
 //        $plain_text = 'This is a plain-text message!';
@@ -38,7 +38,7 @@ class Auth extends PT_Controller {
 //        $this->authentication->guest_redirect_to();
 //        Outputs: This is a plain-text message!
 //        echo $this->encryption->decrypt($ciphertext);
-    }
+//    }
 
     public function login(){
         $this->form_validation->set_rules('username','Username','required');
@@ -62,7 +62,7 @@ class Auth extends PT_Controller {
          */
         $post = $this->input->post();
         if (count($post)>0){
-            $this->form_validation->set_rules('username','Username','required');
+            $this->form_validation->set_rules('username','Username','required|is_unique[PENGGUNA.USERNAME]');
             $this->form_validation->set_rules('email','Email','required|valid_email');
             $this->form_validation->set_rules('password','Password','required');
             if ($this->form_validation->run()){
@@ -70,16 +70,21 @@ class Auth extends PT_Controller {
                 $user->username = strtolower($post['username']);
                 $user->password = password_hash($post['password'], PASSWORD_BCRYPT);
                 $user->email = $post['email'];
-                $this->session->set_flashdata('register_error',$this->form_validation->error_string());
+
                 if($user->save()){
-                    $this->session->set_flashdata('login_message','Pendaftaran sukses, Silahkan login');
+                    $this->session->set_flashdata('register_message','Pendaftaran sukses, Silahkan login');
                     redirect('auth/login');
                 };
             } else {
-
+                $this->session->set_flashdata('register_error',$this->form_validation->error_string());
             }
         }
-        $this->view_template('auth/register');
+        $data = [
+            'error'=>$this->session->flashdata('register_error'),
+            'message'=>$this->session->flashdata('register_message')
+        ];
+//        var_dump($data);
+        $this->view_template('auth/register',$data);
     }
 
     public function fb_login(){

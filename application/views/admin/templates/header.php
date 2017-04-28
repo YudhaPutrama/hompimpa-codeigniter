@@ -17,6 +17,10 @@
     <link href="/public/css/admin/chat-page.css" rel="stylesheet" />
     <link rel="shortcut icon" href="/public/images/admin/favicon.ico" />
 
+    <link href="/public/vendor/trumbowyg/ui/trumbowyg.css" rel="stylesheet" />
+<!--    <link href="/public/vendor/tinymce/skins/lightgray/skin.min.css" rel="stylesheet" />-->
+
+
 </head>
 
 <body>
@@ -41,7 +45,7 @@
                     Tambah Artikel
                 </a>
 
-                <a class="item" href="/admin/article/list">
+                <a class="item" href="/admin/article">
                     Daftar Artikel
                 </a>
                 <a class="item" href="/admin/article/category">

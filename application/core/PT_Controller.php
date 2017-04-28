@@ -18,13 +18,24 @@ class PT_Controller extends CI_Controller {
      */
     protected $need_auth = false;
 
-
+    /**
+     * Passsing data into view
+     * @var array
+     */
+    protected $data = array();
+    /**
+     * PT_Controller constructor.
+     */
     public function __construct() {
         parent::__construct();
         if($this->need_auth){
             $this->need_login();
             $this->need_admin_level();
         }
+        $this->get_userdata();
+        $this->set_data('notifications',[]);
+        $this->set_data('top_categories',[]);
+        $this->set_data('top_games',[]);
     }
 
     public function need_login(){
@@ -35,9 +46,23 @@ class PT_Controller extends CI_Controller {
     }
 
     public function need_admin_level(){
-        if ($this->authentication->verify_role('ADMIN')){
+        if ($this->authentication->verify_role('ADMIN')==false){
             $this->session->set_flashdata('login_error','Need admin level to access page');
             redirect($this->config->item('auth_redirect_to'));
         }
+    }
+
+    public function get_userdata(){
+        if ($this->authentication->is_logged())
+            $this->set_data('user',$this->authentication->get_user());
+    }
+
+    /**
+     * Set data for passwing value to view
+     * @param $key
+     * @param $value
+     */
+    public function set_data($key, $value){
+        $this->data[$key] = $value;
     }
 }

@@ -147,7 +147,11 @@ class Authentication {
      */
     public function verify_role($role){
         $user = $this->get_user();
-        $userrole = $this->config['roles'][$user[$this->config['role_name']]];
-        return $userrole===$role;
+        $userrole = $this->config['roles'][$user['ROLE']];
+//        var_dump($user);
+//        echo $role;
+//        echo $userrole;
+//        die();
+        return $userrole==$role;
     }
 }

@@ -155,11 +155,13 @@
             right: 60px;
             bottom: 60px;
             margin-bottom: 10px;
+            z-index: 10;
         }
         .panel-bottom-play {
             position: fixed;
             bottom: 0;
             width: 100%;
+            z-index: 10;
         }
     </style>
 
@@ -167,62 +169,67 @@
 <body>
 <div class="hero">
     <div class="ui container">
+<?php //if ($this->authentication->verify_role('ADMIN')){ ?>
         <div class="ui right floated teal buttons edit article" style="margin-top: 60px;">
-            <div class="ui button"><i class="edit icon"></i> Sunting Artikel</div>
+            <a class="ui button" href="<?php echo site_url('admin/article/'.$post['SLUG'])?>"><i class="edit icon"></i> Sunting Artikel</a>
             <div class="ui floating dropdown icon button">
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <div class="item"><i class="delete icon"></i> Hapus Artikel</div>
-                    <div class="item"><i class="hide icon"></i> Sembunyikan Artikel</div>
+                    <a class="item" href="<?php echo site_url('admin/article/'.$post['SLUG'])?>"><i class="delete icon"></i> Hapus Artikel</a>
+                    <a class="item" href="<?php echo site_url('admin/article/'.$post['SLUG'])?>"><i class="hide icon"></i> Sembunyikan Artikel</a>
                 </div>
             </div>
         </div>
+<?php //} ?>
         <div class="header-hero">
-            <h1 class="ui header inverted title-hero"><?php echo isset($article['title'])?$article['title']:"Judul Artikel"; ?></h1>
-            <p><?php echo isset($article['subtitle'])?$article['subtitle']:"Artikel Subtitle"; ?></p>
+            <h1 class="ui header inverted title-hero"><?php echo $post['JUDUL'] ?></h1>
+            <p><?php echo isset($post['POST_AT'])?$post['POST_AT']:""; ?></p>
         </div>
     </div>
 </div>
 <div class="ui borderless main menu">
     <div class="ui container">
         <div href="#" class="header item">
-            <img class="ui small image logo" src="<?php echo base_url('public/images/logo.png');?>">
+            <img class="ui small image logo" src="<?php echo base_url('public/images/logo.png'); ?>">
         </div>
-        <a href="#" class="item">Artikel</a>
-        <a href="#" class="item">Galeri</a>
+        <a href="/" class="item">Beranda</a>
+        <a href="/article" class="item">Artikel</a>
+        <a href="/gallery" class="item">Galeri</a>
         <div class="ui right floated item">
-            <a class="ui dropdown item">
-                <i class="icon mail"></i> Notifikasi
-                <div class="ui red label">22</div>
-                <div class="menu">
-                    <div class="header">
-                        Mengajak Kamu Bermain
-                    </div>
-                    <div class="item">
-                        <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
-                        Jenny Hess
-                    </div>
-                    <div class="item">
-                        <img class="ui avatar image" src="/images/avatar/small/elliot.jpg">
-                        Elliot Fu
-                    </div>
-                    <div class="item">
-                        <img class="ui avatar image" src="/images/avatar/small/stevie.jpg">
-                        Stevie Feliciano
-                    </div>
-                </div>
-            </a>
-            <a  class="ui dropdown item">
-                Kurniawan Yudha Putrama <i class="dropdown icon"></i>
-                <div class="menu">
-                    <div class="item">Profil</div>
-                    <div class="item">Pengaturan</div>
-                    <div class="divider"></div>
-                    <div class="item">
-                        <i class="sign out icon"></i>Keluar
+            <?php if(isset($user)){ ?>
+                <a class="ui dropdown item">
+                    <i class="icon mail"></i> <?php echo count($notifications)>0?"Notifikasi":"Tidak ada notifikasi" ?>
+                    <?php if(isset($notifications)){ ?>
+                        <?php if (count($notifications)>0){ ?><div class="ui red label"><?php echo count($notifications); ?></div><?php } ?>
+                        <div class="menu">
+                            <div class="header">
+                                Mengajak Kamu Bermain
+                            </div>
+                            <?php foreach ($notifications as $notification){?>
+                                <div class="item">
+                                    <img class="ui avatar image" src="/images/avatar/small/<?php echo $notification['avatar']; ?>">
+                                    <?php echo $notification['name']; ?>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    <?php }?>
+                </a>
+                <div  class="ui dropdown item">
+                    <?php echo is_null($user['NAMA_LENGKAP'])?$user["USERNAME"]:$user["NAMA_LENGKAP"] ?> <i class="dropdown icon"></i>
+                    <div class="menu ">
+                        <div class="item"><a href="/me">Profil</a></div>
+                        <div class="item"><a href="/setting">Pengaturan</a></div>
+                        <div class="divider"></div>
+                        <div class="item" >
+                            <a href="/logout"><i class="sign out icon"></i>Keluar</a>
+                        </div>
                     </div>
                 </div>
-            </a>
+
+            <?php } else { ?>
+                <a href="/register" class="item">Daftar</a>
+                <a href="/login" class="item">Masuk</a>
+            <?php } ?>
         </div>
 
 
@@ -246,63 +253,26 @@
             </div>
         </div>
     </div>
-
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    <!--    <img class="ui medium left floated image" data-src="assets/images/wireframe/square-image.png">-->
+    <?php echo $post["KONTEN"]->load(); ?>
     <div class="ui comments">
         <h3 class="ui dividing header">Comments</h3>
-        <div class="comment">
-            <a class="avatar">
-                <img src="/images/avatar/small/matt.jpg">
-            </a>
-            <div class="content">
-                <a class="author">Matt</a>
-                <div class="metadata">
-                    <span class="date">Today at 5:42PM</span>
-                </div>
-                <div class="text">
-                    How artistic!
-                </div>
-                <div class="actions">
-                    <a class="reply">Reply</a>
-                </div>
-            </div>
-        </div>
-        <div class="comment">
-            <a class="avatar">
-                <img src="/images/avatar/small/elliot.jpg">
-            </a>
-            <div class="content">
-                <a class="author">Elliot Fu</a>
-                <div class="metadata">
-                    <span class="date">Yesterday at 12:30AM</span>
-                </div>
-                <div class="text">
-                    <p>This has been very useful for my research. Thanks as well!</p>
-                </div>
-                <div class="actions">
-                    <a class="reply">Reply</a>
+        <?php foreach ($comments as $comment){ ?>
+            <div class="comment">
+                <a class="avatar">
+                    <img src="<?php $comment['AVATAR'] ?>">
+                </a>
+                <div class="content">
+                    <a class="author"><?php $comment['AVATAR'] ?></a>
+                    <div class="metadata">
+                        <span class="date"><?php $comment['CREATED_AT'] ?></span>
+                    </div>
+                    <div class="text">
+                        <?php $comment['KOMENTAR'] ?>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="comment">
-            <a class="avatar">
-                <img src="/images/avatar/small/joe.jpg">
-            </a>
-            <div class="content">
-                <a class="author">Joe Henderson</a>
-                <div class="metadata">
-                    <span class="date">5 days ago</span>
-                </div>
-                <div class="text">
-                    Dude, this is awesome. Thanks so much
-                </div>
-                <div class="actions">
-                    <a class="reply">Reply</a>
-                </div>
-            </div>
-        </div>
+        <?php } ?>
+
         <form class="ui reply form">
             <div class="field">
                 <textarea></textarea>
@@ -327,67 +297,35 @@
 
 
 <div class="ui inverted vertical footer segment">
-    <div class="ui center aligned container">
-        <div class="ui stackable inverted divided grid">
+    <div class="ui container">
+        <div class="ui stackable inverted divided equal height stackable grid">
             <div class="three wide column">
-                <h4 class="ui inverted header">Group 1</h4>
+                <h4 class="ui inverted header">Kategori Teratas</h4>
                 <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
+                    <?php foreach ($top_categories as $category) {
+                        echo "<a href=\"".site_url('category/'.$category['KODE_KATEGORI'])."\" class=\"item\" >".$category['NAMA_KATEGORI']."</a >";
+                    } ?>
                 </div>
             </div>
             <div class="three wide column">
-                <h4 class="ui inverted header">Group 2</h4>
+                <h4 class="ui inverted header">Permainan Teratas</h4>
                 <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
-                </div>
-            </div>
-            <div class="three wide column">
-                <h4 class="ui inverted header">Group 3</h4>
-                <div class="ui inverted link list">
-                    <a href="#" class="item">Link One</a>
-                    <a href="#" class="item">Link Two</a>
-                    <a href="#" class="item">Link Three</a>
-                    <a href="#" class="item">Link Four</a>
+                    <?php foreach ($top_games as $game) {
+                        echo "<a class=\"item\" >".$game['NAMA_PERMAINAN']."</a >";
+                    } ?>
                 </div>
             </div>
             <div class="seven wide column">
-                <h4 class="ui inverted header">Footer Header</h4>
-                <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+                <h4 class="ui inverted header">Tentang Kami</h4>
+                <p>Kami Mahasiswa D3 Teknik Informatika Telkom University</p>
+                <!--                        <p>Website ini kami dedikasikan untuk pembelajaran tentang penggiat permainan tradisional</p>-->
             </div>
-        </div>
-        <div class="ui inverted section divider"></div>
-        <img src="assets/images/logo.png" class="ui centered mini image">
-        <div class="ui horizontal inverted small divided link list">
-            <a class="item" href="#">Site Map</a>
-            <a class="item" href="#">Contact Us</a>
-            <a class="item" href="#">Terms and Conditions</a>
-            <a class="item" href="#">Privacy Policy</a>
         </div>
     </div>
 </div>
 <div class="ui basic modal" id="modal1">
-    <div class="ui icon header">
-        <i class="archive icon"></i>
-        Archive Old Messages
-    </div>
     <div class="content">
-        <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
-    </div>
-    <div class="actions">
-        <div class="ui red basic cancel inverted button">
-            <i class="remove icon"></i>
-            No
-        </div>
-        <div class="ui green ok inverted button">
-            <i class="checkmark icon"></i>
-            Yes
-        </div>
+
     </div>
 </div>
 <div class="ui page dimmer">
@@ -396,5 +334,4 @@
     </div>
 </div>
 </body>
-
 </html>

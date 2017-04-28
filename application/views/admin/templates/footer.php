@@ -27,8 +27,22 @@
 
 <script src="/public/vendor/chartist/chartist.min.js"></script>
 
+<!--<script src="/public/vendor/tinymce/tinymce.min.js"></script>-->
+<script src="/public/vendor/trumbowyg/trumbowyg.js"></script>
+<!--<script src="/public/vendor/tinymce/themes/modern/theme.min.js"></script>-->
+<script src="/public/js/admin/customjs/custom-editor.js"></script>
+
 <script src="/public/js/admin/dashboard2.js"></script>
 <script src="/public/js/admin/main.js"></script>
+
+
+    <?php
+if (isset($scripts))
+    foreach ($scripts as $script){
+        echo $script;
+    }
+?>
+
 </body>
 
 </html>

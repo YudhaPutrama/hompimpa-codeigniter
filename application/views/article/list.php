@@ -37,14 +37,21 @@
         /*-webkit-box-align: center;*/
     }
     .header-hero {
-        position: absolute;
-        bottom: 20px;
+        position: relative;
+        width: 100%;
+        padding-top: 300px;
+        text-align: center;
     }
     .title-hero {
         font-weight: 700!important;
         font-style: normal!important;
         font-size: 40px !important;
         /*margin-left: -2.5px;*/
+    }
+    .featured.images {
+        width: 100%;
+        padding-top: 60%;
+        background-color: #bcbec0;
     }
     .header-hero p{
         font-size: 18px!important;
@@ -61,38 +68,40 @@
             <a href="/article" class="item">Artikel</a>
             <a href="/gallery" class="item">Galeri</a>
             <div class="ui right floated item">
-                <a class="ui dropdown item">
-                    <i class="icon mail"></i> Notifikasi
-                    <div class="ui red label">22</div>
-                    <div class="menu">
-                        <div class="header">
-                            Mengajak Kamu Bermain
-                        </div>
-                        <div class="item">
-                            <img class="ui avatar image" src="/images/avatar/small/jenny.jpg">
-                            Jenny Hess
-                        </div>
-                        <div class="item">
-                            <img class="ui avatar image" src="/images/avatar/small/elliot.jpg">
-                            Elliot Fu
-                        </div>
-                        <div class="item">
-                            <img class="ui avatar image" src="/images/avatar/small/stevie.jpg">
-                            Stevie Feliciano
-                        </div>
-                    </div>
-                </a>
-                <a  class="ui dropdown item">
-                    Kurniawan Yudha Putrama <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="item">Profil</div>
-                        <div class="item">Pengaturan</div>
-                        <div class="divider"></div>
-                        <div class="item">
-                            <i class="sign out icon"></i>Keluar
+                <?php if(isset($user)){ ?>
+                    <a class="ui dropdown item">
+                        <i class="icon mail"></i> <?php echo count($notifications)>0?"Notifikasi":"Tidak ada notifikasi" ?>
+                        <?php if(isset($notifications)){ ?>
+                            <?php if (count($notifications)>0){ ?><div class="ui red label"><?php echo count($notifications); ?></div><?php } ?>
+                            <div class="menu">
+                                <div class="header">
+                                    Mengajak Kamu Bermain
+                                </div>
+                                <?php foreach ($notifications as $notification){?>
+                                    <div class="item">
+                                        <img class="ui avatar image" src="/images/avatar/small/<?php echo $notification['avatar']; ?>">
+                                        <?php echo $notification['name']; ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        <?php }?>
+                    </a>
+                    <div  class="ui dropdown item">
+                        <?php echo is_null($user['NAMA_LENGKAP'])?$user["USERNAME"]:$user["NAMA_LENGKAP"] ?> <i class="dropdown icon"></i>
+                        <div class="menu ">
+                            <div class="item"><a href="/me">Profil</a></div>
+                            <div class="item"><a href="/setting">Pengaturan</a></div>
+                            <div class="divider"></div>
+                            <div class="item" >
+                                <a href="/logout"><i class="sign out icon"></i>Keluar</a>
+                            </div>
                         </div>
                     </div>
-                </a>
+
+                <?php } else { ?>
+                    <a href="/register" class="item">Daftar</a>
+                    <a href="/login" class="item">Masuk</a>
+                <?php } ?>
             </div>
 
 
@@ -102,62 +111,30 @@
     <div class="hero">
         <div class="ui container">
             <div class="header-hero">
-<!--                <h1 class="ui header inverted title-hero">--><?php //echo isset($article['title'])?$article['title']:"Judul Artikel"; ?><!--</h1>-->
-<!--                <p>--><?php //echo isset($article['subtitle'])?$article['subtitle']:"Artikel Subtitle"; ?><!--</p>-->
+                <h1 class="ui header inverted title-hero">Artikel Terbaru</h1>
             </div>
-        </div>
-    </div>
-
-    <div class="ui vertical stripe segment">
-        <div class="ui middle aligned stackable grid container">
-            <div class="row">
-                <div class="eight wide column">
-                    <h3 class="ui header">Telusuri dan Pelajari</h3>
-                    <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
-                </div>
-                <div class="six wide right floated column">
-                    <img src="assets/images/wireframe/white-image.png" class="ui large bordered rounded image">
-                </div>
-            </div>
-            <!--                    <div class="row">-->
-            <!--                        <div class="center aligned column">-->
-            <!--                            <a class="ui huge button">Check Them Out</a>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-        </div>
-    </div>
-
-    <div class="ui vertical stripe segment">
-        <div class="ui middle aligned stackable grid container">
-            <div class="row">
-                <div class="six wide left floated column">
-                    <img src="assets/images/wireframe/white-image.png" class="ui large bordered rounded image">
-                </div>
-                <div class="eight wide column">
-                    <h3 class="ui header">Mainkan dengan Orang Lain</h3>
-                    <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
-                </div>
-
-            </div>
-            <!--                    <div class="row">-->
-            <!--                        <div class="center aligned column">-->
-            <!--                            <a class="ui huge button">Check Them Out</a>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
         </div>
     </div>
 
     <div class="ui vertical stripe segment">
         <div class="ui text container">
-            <h4 class="ui horizontal header divider">
-                <a href="#">Artikel Terbaru</a>
-            </h4>
-            <h3 class="ui header">Breaking The Grid, Grabs Your Attention</h3>
-            <p>Instead of focusing on content creation and hard work, we have learned how to master the art of doing nothing by providing massive amounts of whitespace and generic content that can seem massive, monolithic and worth your attention.</p>
-            <a class="ui large button">Read More</a>
-            <h3 class="ui header">Did We Tell You About Our Bananas?</h3>
-            <p>Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but its really true. It took years of gene splicing and combinatory DNA research, but our bananas can really dance.</p>
-            <a class="ui large button">I'm Still Quite Interested</a>
+        <?php foreach ($posts as $post){ ?>
+            <h3 class="ui header"><?php echo $post['JUDUL']; ?></h3>
+            <div class="featured images"></div>
+            <p><?php echo $post['KONTEN']->read(500) ?></p>
+            <a class="ui large button" href="<?php echo site_url($post['SLUG'])?>">Baca Lebih</a>
+        <?php } ?>
+            <div class="ui center aligned basic segment">
+<!--                <div class="ui horizontal divider header">Halaman Lain</div>-->
+                <div class="ui buttons">
+                    <button class="ui button"><i class="left arrow icon"></i></button>
+                    <button class="blue ui button">1</button>
+                    <button class="ui button">2</button>
+                    <button class="ui button">3</button>
+                    <button class="ui button"><i class="right arrow icon"></i></button>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -168,13 +145,17 @@
                 <div class="three wide column">
                     <h4 class="ui inverted header">Kategori Teratas</h4>
                     <div class="ui inverted link list">
-                        <a href="#" class="item">Sitemap</a>
+                        <?php foreach ($top_categories as $category) {
+                            echo "<a href=\"".site_url('category/'.$category['KODE_KATEGORI'])."\" class=\"item\" >".$category['NAMA_KATEGORI']."</a >";
+                        } ?>
                     </div>
                 </div>
                 <div class="three wide column">
                     <h4 class="ui inverted header">Permainan Teratas</h4>
                     <div class="ui inverted link list">
-                        <a href="#" class="item">Artikel</a>
+                        <?php foreach ($top_games as $game) {
+                            echo "<a class=\"item\" >".$game['NAMA_PERMAINAN']."</a >";
+                        } ?>
                     </div>
                 </div>
                 <div class="seven wide column">
