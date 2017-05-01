@@ -126,13 +126,14 @@
         <?php } ?>
             <div class="ui center aligned basic segment">
 <!--                <div class="ui horizontal divider header">Halaman Lain</div>-->
-                <div class="ui buttons">
-                    <button class="ui button"><i class="left arrow icon"></i></button>
-                    <button class="blue ui button">1</button>
-                    <button class="ui button">2</button>
-                    <button class="ui button">3</button>
-                    <button class="ui button"><i class="right arrow icon"></i></button>
-                </div>
+                <?php echo $this->pagination->create_links() ?>
+<!--                <div class="ui buttons">-->
+<!--                    <button class="ui button"><i class="left arrow icon"></i></button>-->
+<!--                    <button class="blue ui button">1</button>-->
+<!--                    <button class="ui button">2</button>-->
+<!--                    <button class="ui button">3</button>-->
+<!--                    <button class="ui button"><i class="right arrow icon"></i></button>-->
+<!--                </div>-->
             </div>
 
         </div>

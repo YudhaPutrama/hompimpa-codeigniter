@@ -25,10 +25,10 @@
                             <div class="three fields">
                                 <div class="field">
                                     <label>Tag</label>
-                                    <select name="tags" multiple="" class="ui fluid dropdown">
+                                    <select name="tags[]" multiple="" class="ui fluid dropdown">
                                         <option value="" >Tag</option>
                                         <?php foreach ($tags as $tag){
-                                            echo "<option value=\"".$tag['KODE_TAG']."\">".tag['NAMA_TAG']."</option>";
+                                            echo "<option value=\"".$tag['KODE_TAG']."\">".$tag['NAMA_TAG']."</option>";
                                         } ?>
                                     </select>
                                 </div>

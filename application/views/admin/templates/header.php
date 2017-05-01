@@ -83,10 +83,6 @@
                 <i class="dropdown icon"></i> Pengguna
             </div>
             <div class="content">
-                <a class="item" href="/admin/user/new">
-                    Tambah Pengguna
-                </a>
-
                 <a class="item" href="/admin/user">
                     Daftar Pengguna
                 </a>

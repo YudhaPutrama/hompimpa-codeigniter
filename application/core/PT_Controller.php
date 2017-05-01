@@ -10,7 +10,10 @@
  * @property Article_model article_model
  * @property User_model user_model
  * @property Game_model game_model
+ * @property Gamesession_model gamesession_model
  * @property Gallery_model gallery_model
+ * @property Tag_model tag_model
+ * @property Category_model category_model
  */
 class PT_Controller extends CI_Controller {
     /**

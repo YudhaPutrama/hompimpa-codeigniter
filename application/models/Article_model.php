@@ -105,7 +105,8 @@ class Article_model extends PT_Model {
      * @return mixed
      */
     public function set_category($slug, $category) {
-
+        $query = "UPDATE ".$this->table_name." SET KODE_KATEGORI='".$category."' WHERE SLUG='".$slug."'";
+        return $this->db->query($query);
     }
 
     public function get_articles_users(){
@@ -122,9 +123,26 @@ class Article_model extends PT_Model {
 	 */
     public function get_count_news($userId=null){
         if ($userId==null)
-            return $this->db->query("SELECT JUMLAH_ARTIKEL FROM DUAL")->row_array()['JUMLAH_ARTIKEL'];
+            return $this->db->query("SELECT JUMLAH_ARTIKEL() FROM DUAL")->row_array()['JUMLAH_ARTIKEL'];
         else {
-            return $this->db->query("SELECT JUMLAH_ARTIKEL FROM DUAL")->row_array()['JUMLAH_ARTIKEL'];
+            return $this->db->query("SELECT JUMLAH_ARTIKEL() FROM DUAL")->row_array()['JUMLAH_ARTIKEL'];
+        }
+    }
+
+    /**
+     * Set tag in article
+     * @param $tags string|array
+     * @param $article integer
+     *
+     * @return bool
+     */
+    public function set_tags($tags, $article=null){
+        if (is_null($article)&&is_null($this->id)) return false;
+        else if (is_null($article)) $article = $this->id;
+        if (is_array($tags)){
+            $query = "";
+        } else {
+
         }
     }
 }

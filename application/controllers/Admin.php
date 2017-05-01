@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @property  Tag_model tag_model
+ * @property  Category_model category_model
+ */
 class Admin extends PT_Controller {
 
 //    protected $need_auth = true;
@@ -29,10 +34,22 @@ class Admin extends PT_Controller {
 
     //Article New
     public function article_new(){
-        var_dump($this->input->post());
-        $this->set_data('tags',[]);
-        $this->set_data('categories',[]);
-        $this->set_data('games',[]);
+//        var_dump($this->input->post());
+//        var_dump($this->authentication->get_user()['ID']);
+        $article = new Article_model();
+        $article->judul = $this->input->post('judul');
+        $article->slug = url_title($article->judul);
+        $article->id_pengguna = $this->authentication->get_user()['ID'];
+        $article->konten = $this->input->post('konten');
+        $article->kode_kategori = $this->input->post('kategori');
+        $article->id_permainan = $this->input->post('permainan');
+        if($article->save_news()){
+            $this->set_data('message', 'Berhasil menambahkan');
+        }
+//        var_dump($article);
+        $this->set_data('tags',$this->tag_model->get());
+        $this->set_data('categories',$this->category_model->get());
+        $this->set_data('games',$this->game_model->get());
         $this->load->view('admin/article-new', $this->data);
     }
 

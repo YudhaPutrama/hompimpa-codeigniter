@@ -73,4 +73,17 @@ class User_model extends PT_Model {
         return $query->update($this->table_name, $data);
     }
 
+    /**
+     * Get number of news using oracle function
+     *
+     * @return	mixed
+     */
+    public function get_count_user($userId=null){
+        if ($userId==null)
+            return $this->db->query("SELECT JUMLAH_PENGGUNA() JUMLAH FROM DUAL")->row_array()['JUMLAH'];
+        else {
+            return $this->db->query("SELECT JUMLAH_PENGGUNA() JUMLAH FROM DUAL")->row_array()['JUMLAH'];
+        }
+    }
+
 }

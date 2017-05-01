@@ -28,8 +28,9 @@
                             </thead>
 
                             <tbody>
-                            <tr>
+
 <?php foreach ($articles as $article) { ?>
+<tr>
     <td><?php echo $article['SLUG'] ?></td>
     <td><?php echo $article['JUDUL'] ?></td>
     <td><?php echo $article['PENGGUNA'] ?></td>
@@ -39,10 +40,11 @@
         <a class="ui teal button" href="/admin/article/<?php echo $article['SLUG'] ?>"><i class="pencil icon"></i>Sunting</a>
         <a class="ui red button" href="/admin/article/<?php echo $article['SLUG'] ?>/delete"><i class="trash icon"></i>Hapus</a>
     </td>
+</tr>
 <?php
 }
 ?>
-                            </tr>
+
                             </tbody>
                         </table>
                     </div>
