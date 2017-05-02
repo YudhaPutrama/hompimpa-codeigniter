@@ -29,6 +29,14 @@ class Category_model extends PT_Model {
         return $this->db->where("KODE_KATEGORI", $this->kode_kategori)->get($this->table_name)->row_array();
     }
 
+    public function get_all()
+    {
+
+        return $this->db->query(
+            'SELECT KATEGORI.KODE_KATEGORI, KATEGORI.NAMA_KATEGORI FROM KATEGORI, ARTIKEL WHERE KATEGORI.KODE_KATEGORI = ARTIKEL.KODE_KATEGORI')
+            ->result_array();
+    }
+
     public function delete(){
         if (is_null($this->kode_kategori)) return false;
         return $this->db->where("KODE_KATEGORI", $this->kode_kategori)->delete($this->table_name);

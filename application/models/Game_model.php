@@ -52,4 +52,17 @@ class Game_model extends PT_Model {
         }
         return $this->db->where("ID",$id)->get($this->table_name);
     }
+
+    /**
+     * Get number of news using oracle function
+     *
+     * @return	mixed
+     */
+    public function get_count_game($userId=null){
+        if ($userId==null)
+            return $this->db->query("SELECT JUMLAH_PERMAINAN() JUMLAH FROM DUAL")->row_array()['JUMLAH'];
+        else {
+            return $this->db->query("SELECT JUMLAH_PERMAINAN() JUMLAH FROM DUAL")->row_array()['JUMLAH'];
+        }
+    }
 }

@@ -48,10 +48,10 @@
                 <a class="item" href="/admin/article">
                     Daftar Artikel
                 </a>
-                <a class="item" href="/admin/article/category">
+                <a class="item" href="/admin/category">
                     Kategori
                 </a>
-                <a class="item" href="/admin/article/tag">
+                <a class="item" href="/admin/tag">
                     Tag
                 </a>
             </div>
@@ -109,7 +109,7 @@
                 <div class="statistic">
                     <div class="value">
                         <i class="ion-person icon"></i>
-                        <span class="counter">3654</span>
+                        <span class="counter"><?php echo $this->user_model->get_count_user() ?></span>
                     </div>
                     <div class="label">
                         Pengguna
@@ -118,7 +118,7 @@
 
                 <div class="statistic">
                     <div class="value">
-                        <i class="ion-mouse icon"></i><span class="counter">19</span>
+                        <i class="ion-mouse icon"></i><span class="counter">  <?php echo $this->game_model->get_count_game() ?></span>
                     </div>
                     <div class="label">
                         Permainan

@@ -54,28 +54,42 @@ class Admin extends PT_Controller {
     }
 
     //Article View
-    public function article_view(){
-        $this->load->view('admin/article', $this->data);
+    public function article_view($slug){
+        $article = $this->article_model->get_news_by_slug($slug);
+        $this->set_data('article', $article);
+        $this->load->view('admin/article-edit', $this->data);
     }
 
     //Article Update
-    public function article_update(){
-        $this->load->view('admin/article', $this->data);
+    public function article_update($slug){
+
+        redirect('admin/article');
     }
 
     //Article Delete
-    public function article_delete(){
-        $this->load->view('admin/article', $this->data);
+    public function article_delete($slug){
+        $this->article_model->delete_news($slug);
+        redirect('/admin/article');
     }
 
     //Category
     public function category(){
-        $this->load->view('admin/article', $this->data);
+        $this->set_data('categories', $this->category_model->get_all());
+//        var_dump($this->category_model->get_all());
+        $this->load->view('admin/category', $this->data);
     }
 
     //Category New
     public function category_new(){
-        $this->load->view('admin/article', $this->data);
+        $data = array(
+            'nama'=>$this->input->post('nama_kategori'),
+            'kode'=>url_title($this->input->post('nama_kategori'))
+        );
+        $category = new Category_model();
+        $category->kode_kategori = $data['kode'];
+        $category->nama_kategori = $data['nama'];
+        $category->save();
+        redirect('admin/category');
     }
 
     //Category View
@@ -85,17 +99,17 @@ class Admin extends PT_Controller {
 
     //Category Update
     public function category_update(){
-        $this->load->view('admin/article', $this->data);
+        redirect('admin/category');
     }
 
     //Category Delete
     public function category_delete(){
-        $this->load->view('admin/article', $this->data);
+        redirect('admin/category');
     }
 
     //Article
     public function tag(){
-        $this->load->view('admin/article', $this->data);
+        $this->load->view('admin/tag', $this->data);
     }
 
     //Article
@@ -120,67 +134,63 @@ class Admin extends PT_Controller {
 
     //Article
     public function game(){
-        $this->load->view('admin/article', $this->data);
+        $this->load->view('admin/game', $this->data);
     }
 
     //Article
     public function game_score(){
-        $this->load->view('admin/article', $this->data);
+        $this->load->view('admin/game', $this->data);
     }
 
     //Article
     public function game_new(){
-        $this->load->view('admin/article', $this->data);
+        $this->load->view('admin/game', $this->data);
     }
 
     //Article
     public function game_view(){
-        $this->load->view('admin/article', $this->data);
+        $this->load->view('admin/game', $this->data);
     }
 
     //Article
     public function game_update(){
-        $this->load->view('admin/article', $this->data);
+        $this->load->view('admin/game', $this->data);
     }
 
     //Article
     public function game_delete(){
-        $this->load->view('admin/article', $this->data);
+        $this->load->view('admin/game', $this->data);
     }
 
-    //Article
+    //User List
     public function user(){
         $this->load->view('admin/article', $this->data);
     }
 
-    //Article
+    //User
     public function user_role(){
-        $this->load->view('admin/article', $this->data);
+        $this->load->view('admin/role', $this->data);
     }
 
-    //Article
-    public function user_new(){
-        $this->load->view('admin/article', $this->data);
-    }
 
-    //Article
+    //User
     public function user_view(){
         $this->load->view('admin/article', $this->data);
     }
 
-    //Article
+    //User
     public function user_update(){
-        $this->load->view('admin/article', $this->data);
+        redirect('/admin/user');
     }
 
-    //Article
+    //User
     public function user_delete(){
-        $this->load->view('admin/article', $this->data);
+        redirect('/admin/user');
     }
 
-    //Article
+    //user
     public function ranking(){
-        $this->load->view('admin/article', $this->data);
+        $this->load->view('admin/ranking', $this->data);
     }
 
 }

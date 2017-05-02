@@ -123,9 +123,9 @@ class Article_model extends PT_Model {
 	 */
     public function get_count_news($userId=null){
         if ($userId==null)
-            return $this->db->query("SELECT JUMLAH_ARTIKEL() FROM DUAL")->row_array()['JUMLAH_ARTIKEL'];
+            return $this->db->query("SELECT JUMLAH_ARTIKEL() JUMLAH FROM DUAL")->row_array()['JUMLAH'];
         else {
-            return $this->db->query("SELECT JUMLAH_ARTIKEL() FROM DUAL")->row_array()['JUMLAH_ARTIKEL'];
+            return $this->db->query("SELECT JUMLAH_ARTIKEL() JUMLAH FROM DUAL")->row_array()['JUMLAH'];
         }
     }
 

@@ -18,11 +18,9 @@ class User extends PT_Controller {
 
     public function me(){
         $user = $this->authentication->get_user();
-        $data = [
-            'user' => $user
-        ];
+        $this->set_data('user', $user);
         $a = new UserItem();
-        $this->load->view('profile',$data);
+        $this->load->view('profile',$this->data);
     }
 
     public function view($username){

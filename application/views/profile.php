@@ -46,12 +46,189 @@
                 <?php } ?>
 
             </div>
-
-
-
         </div>
     </div>
 </div>
+<style>
+    .profile {
+        margin-top: 100px;
+    }
+</style>
+<div class="ui container profile">
+    <div class="ui grid">
+        <div class="ui eight wide column">
+            <div class="ui basic segment no-padding">
+                <div class="ui fluid one cards special">
+                    <div class="card fluid">
+                        <div class="blurring dimmable image">
+                            <div class="ui dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui inverted button">Add Friend</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="/public/images/admin/gallery/images5.jpg">
+                        </div>
+                        <div class="content">
+                            <a class="header"><?php echo $user['NAMA_LENGKAP'] ?></a>
+                            <div class="meta">
+                                <span class="date"><?php echo $user['USERNAME'] ?></span>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                                <i class="like icon"></i>
+                            </a>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                                <i class="like icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui eight wide column">
+            <div class="ui segment">
+                <h5 class="ui dividing header">
+                    Berita Terbaru
+                </h5>
+                <div class="ui feed timeline">
+                    <div class="event">
+                        <div class="label">
+                            <img src="/public/images/admin/avatar/people/Abraham.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a class="user">
+                                    Francis	Baldwin
+                                </a> added you as a friend
+                                <div class="date">
+                                    1 Hour Ago
+                                </div>
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 4 Likes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="/public/images/admin/avatar/people/carol.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a>Lindsey Daniels</a> added <a>2 new illustrations</a>
+                                <div class="date">
+                                    4 days ago
+                                </div>
+                            </div>
+                            <div class="extra images">
+                                <a><img src="/public/images/admin/bg/1.png" alt="bg-image" /></a>
+                                <a><img src="/public/images/admin/bg/3.png" alt="bg-image" /></a>
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 1 Like
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="/public/images/admin/avatar/people/Daryl.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a class="user">
+                                    Walter	Stewart
+                                </a> added you as a friend
+                                <div class="date">
+                                    2 Days Ago
+                                </div>
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 8 Likes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="/public/images/admin/avatar/people/deana.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a>Loretta	Burke</a> posted on his page
+                                <div class="date">
+                                    3 days ago
+                                </div>
+                            </div>
+                            <div class="extra text">
+                                Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 5 Likes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="/public/images/admin/avatar/people/enid.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a>Meredith	Barnes</a> added <a>2 new photos</a> of you
+                                <div class="date">
+                                    4 days ago
+                                </div>
+                            </div>
+                            <div class="extra images">
+                                <a><img src="/public/images/admin/bg/5.png" alt="bg-image" /></a>
+                                <a><img src="/public/images/admin/bg/6.png" alt="bg-image" /></a>
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 41 Likes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="event">
+                        <div class="label">
+                            <img src="/public/images/admin/avatar/people/Meggie.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <a>Jennifer	Clarke</a> posted on his page
+                                <div class="date">
+                                    3 days ago
+                                </div>
+                            </div>
+                            <div class="extra text">
+                                Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again.
+                            </div>
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon"></i> 5 Likes
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php include ("templates/public/script.php"); ?>
 <script>
     $(document).ready(function () {
