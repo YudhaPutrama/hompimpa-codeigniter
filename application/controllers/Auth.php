@@ -56,6 +56,10 @@ class Auth extends PT_Controller {
         }
     }
 
+    public function forgot(){
+        $this->load->view('auth/forgot');
+    }
+
     public function register() {
         /**
          * @var array
@@ -70,6 +74,7 @@ class Auth extends PT_Controller {
                 $user->username = strtolower($post['username']);
                 $user->password = password_hash($post['password'], PASSWORD_BCRYPT);
                 $user->email = $post['email'];
+                $user->role=1;
 
                 if($user->save()){
                     $this->session->set_flashdata('register_message','Pendaftaran sukses, Silahkan login');

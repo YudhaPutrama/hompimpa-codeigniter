@@ -16,10 +16,26 @@ class User extends PT_Controller {
     public function index(){
     }
 
+    public function update(){
+        
+    }
+
     public function me(){
+        $this->load->model('berita_model');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('berita', 'Berita', 'required');
+        if($this->form_validation->run()){
+            $data = array(
+                'USERNAME_PENGGUNA'=>$this->session->userdata('user_id'),
+                'BERITA' => $this->input->post('berita')
+            );
+            $this->berita_model->insert($data);
+        }
+        
         $user = $this->authentication->get_user();
         $this->set_data('user', $user);
         $a = new UserItem();
+        $this->set_data('news',$this->berita_model->get_profil());
         $this->load->view('profile',$this->data);
     }
 

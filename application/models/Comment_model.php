@@ -31,4 +31,10 @@ class Comment_model extends PT_Model {
         $query = $this->db->where("ID", $id);
         return $query->delete("KOMENTAR_ARTIKEL");
     }
+
+    public function get_list(){
+        return $this->db->query("
+        SELECT A.ID, A.KOMENTAR, B.JUDUL, C.NAMA_LENGKAP FROM KOMENTAR_ARTIKEL A, ARTIKEL B, PENGGUNA C WHERE A.ID_ARTIKEL=B.ID AND A.ID_PENGGUNA=C.ID
+        ")->result_array();
+    }
 }

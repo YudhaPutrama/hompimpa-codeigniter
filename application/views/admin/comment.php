@@ -18,27 +18,23 @@
                             <table id="data_table" class="ui compact selectable striped celled table tablet stackable" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>Slug</th>
                                     <th>Judul</th>
-                                    <th>Pengguna</th>
-                                    <th>Like</th>
-                                    <th>Created At</th>
+                                    <th>Penulis</th>
+                                    <th>Komentar</th>
                                     <th>Aksi</th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
 
-                                <?php foreach ($articles as $article) { ?>
+                                <?php foreach ($comments as $comment) { ?>
                                     <tr>
-                                        <td><?php echo $article['SLUG'] ?></td>
-                                        <td><?php echo $article['JUDUL'] ?></td>
-                                        <td><?php echo $article['PENGGUNA'] ?></td>
-                                        <td><?php echo $article['NUM_LIKE'] ?></td>
-                                        <td><?php echo $article['CREATED_AT'] ?></td>
+                                        <td><?php echo $comment['JUDUL'] ?></td>
+                                        <td><?php echo $comment['NAMA_LENGKAP'] ?></td>
+                                        <td><?php echo $comment['KOMENTAR'] ?></td>
                                         <td>
-                                            <a class="ui teal button" href="/admin/article/<?php echo $article['SLUG'] ?>"><i class="pencil icon"></i>Sunting</a>
-                                            <a class="ui red button" href="/admin/article/<?php echo $article['SLUG'] ?>/delete"><i class="trash icon"></i>Hapus</a>
+                                            <a class="ui teal button" href="/admin/comment/<?php echo $comment['ID'] ?>"><i class="pencil icon"></i>Sunting</a>
+                                            <a class="ui red button" href="/admin/comment/<?php echo $comment['ID'] ?>/delete"><i class="trash icon"></i>Hapus</a>
                                         </td>
                                     </tr>
                                     <?php

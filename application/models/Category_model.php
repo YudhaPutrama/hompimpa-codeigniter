@@ -33,8 +33,9 @@ class Category_model extends PT_Model {
             'KODE_KATEGORI',
             $kode
         )->get($this->table_name)->row_array();
-        if (is_null($this->kode_kategori)) return false;
+        //if (is_null($this->kode_kategori)) return array();
         return $this->db->where("KODE_KATEGORI", $this->kode_kategori)->get($this->table_name)->row_array();
+        // return $this->db->
     }
 
     public function get_other()

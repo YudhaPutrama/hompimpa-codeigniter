@@ -21,7 +21,7 @@
                                     <th>Username</th>
                                     <th>Nama Lengkap</th>
                                     <th>Email</th>
-                                    <th>Role</th>
+                                    <!--<th>Role</th>-->
 <!--                                    <th>Created At</th>-->
                                     <th>Aksi</th>
                                 </tr>
@@ -31,14 +31,14 @@
 
                                 <?php foreach ($members as $member) { ?>
                                     <tr>
-                                        <td><?php echo $article['USERNAME'] ?></td>
-                                        <td><?php echo $article['FULL_NAME'] ?></td>
-                                        <td><?php echo $article['EMAIL'] ?></td>
-                                        <td><?php echo $article['ROLE'] ?></td>
+                                        <td><?php echo $member['USERNAME'] ?></td>
+                                        <td><?php echo $member['NAMA_LENGKAP'] ?></td>
+                                        <td><?php echo $member['EMAIL'] ?></td>
+                                        <!--<td><?php echo $member['ROLE'] ?></td>-->
 <!--                                        <td>--><?php //echo $article['CREATED_AT'] ?><!--</td>-->
                                         <td>
-                                            <a class="ui teal button" href="/admin/member/<?php echo $article['USERNAME'] ?>/update"><i class="pencil icon"></i>Sunting</a>
-                                            <a class="ui red button" href="/admin/member/<?php echo $article['USERNAME'] ?>/delete"><i class="trash icon"></i>Hapus</a>
+                                            <a class="ui teal button" href="/admin/user/<?php echo $member['USERNAME'] ?>/update"><i class="pencil icon"></i>Sunting</a>
+                                            <a class="ui red button" href="/admin/user/<?php echo $member['USERNAME'] ?>/delete"><i class="trash icon"></i>Hapus</a>
                                         </td>
                                     </tr>
                                     <?php

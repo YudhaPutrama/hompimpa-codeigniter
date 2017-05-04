@@ -86,4 +86,8 @@ class User_model extends PT_Model {
         }
     }
 
+    public function remove($username){
+        return $this->db->where('USERNAME', $username)->delete($this->table_name);
+    }
+
 }

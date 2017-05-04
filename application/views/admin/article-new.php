@@ -37,34 +37,12 @@
                                     <select name="kategori" class="ui fluid dropdown">
                                         <option value="">Kategori</option>
                                         <?php foreach ($categories as $category){
-                                            echo "<option value=\"".$tag['KODE_KATEGORI']."\">".$category['NAMA_KATEGORI']."</option>";
+                                            echo "<option value=\"".$category['KODE_KATEGORI']."\">".$category['NAMA_KATEGORI']."</option>";
                                         } ?>
                                     </select>
-<!--                                    <div class="ui fluid labeled icon dropdown button">-->
-<!--                                        <i class="filter icon"></i>-->
-<!--                                        <span class="text">Kategori</span>-->
-<!--                                        <div class="menu">-->
-<!--                                            --><?php //foreach ($categories as $category){
-//                                                echo "<div class=\"item\">
-//                                                Important
-//                                            </div>";
-//                                            } ?>
-<!--                                        </div>-->
-<!--                                    </div>-->
                                 </div>
                                 <div class="field">
                                     <label>Permainan</label>
-<!--                                    <div class="ui fluid labeled icon dropdown button">-->
-<!--                                        <i class="mouse pointer icon"></i>-->
-<!--                                        <span class="text">Permainan</span>-->
-<!--                                        <div class="menu">-->
-<!--                                            --><?php //foreach ($games as $game){
-//                                                echo "<div class=\"item\">
-//                                                ".$game['NAMA_PERMAINAN']."
-//                                            </div>";
-//                                            } ?>
-<!--                                        </div>-->
-<!--                                    </div>-->
                                     <select name="permainan" class="ui fluid dropdown">
                                         <option value="">Permainan</option>
                                         <?php foreach ($games as $game){
@@ -73,13 +51,13 @@
                                     </select>
                                 </div>
                             </div>
-<!--                            <div class="field">-->
-<!--                                <label>Gambar</label>-->
-<!--                                <input type="file" placeholder="Judul">-->
-<!--                            </div>-->
-<!--                            <div class="field">-->
-<!--                                <img class="ui fluid image" src="https://semantic-ui.com/images/wireframe/image.png">-->
-<!--                            </div>-->
+                            <div class="field">
+                                <label>Gambar</label>
+                                <input type="file" placeholder="Judul" name='gambar'>
+                            </div>
+                            <!--<div class="field">
+                                <img class="ui fluid image" name="preview" src="https://semantic-ui.com/images/wireframe/image.png">
+                            </div>-->
                             <button class="ui blue right floated button" type="submit">Submit</button>
                         </div>
                         </form>
@@ -89,8 +67,25 @@
         </div>
     </div>
     <!--Site Content-->
+<?php
+$scripts[] = "
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#preview').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
-
+$('#gambar).change(function(){
+    readURL(this);
+});
+</script>
+";
+?>
 </div>
 <!--maincontent-->
 <?php include "templates/footer.php" ?>

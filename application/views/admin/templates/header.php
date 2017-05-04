@@ -73,7 +73,7 @@
                     Daftar Permainan
                 </a>
                 <a class="item" href="/admin/game/score">
-                    Nilai
+                    Score
                 </a>
             </div>
 
@@ -87,12 +87,12 @@
                     Daftar Pengguna
                 </a>
 
-                <a class="item" href="/admin/user/block">
+                <!--<a class="item" href="/admin/user/block">
                     Pengguna Terblokir
-                </a>
-                <a class="item" href="/admin/user/role">
+                </a>-->
+                <!--<a class="item" href="/admin/user/role">
                     Role
-                </a>
+                </a>-->
             </div>
 
             <a class="item" href="/admin/ranking">

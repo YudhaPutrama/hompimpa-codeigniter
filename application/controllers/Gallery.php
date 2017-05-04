@@ -1,7 +1,13 @@
 <?php
 class Gallery extends PT_Controller {
     public function index(){
-        $this->load->view('gallery');
+        $dump[] = array(
+            'NAMA_FILE'=>'images5.jpg',
+            'JUDUL'=>'Cantik'
+        );
+
+        $this->set_data('galleries',$dump);
+        $this->load->view('gallery', $this->data);
     }
 
     public function detail($id){

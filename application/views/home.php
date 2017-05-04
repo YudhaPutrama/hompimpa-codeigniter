@@ -10,7 +10,7 @@
                 <a href="/article" class="item">Artikel</a>
                 <a href="/gallery" class="item">Galeri</a>
                 <div class="ui right floated item">
-<?php if(isset($user)){ ?>
+                    <?php if(isset($user)){ ?>
                     <a class="ui dropdown item">
                         <i class="icon mail"></i> <?php echo count($notifications)>0?"Notifikasi":"Tidak ada notifikasi" ?>
                         <?php if(isset($notifications)){ ?>
@@ -39,15 +39,11 @@
                             </div>
                         </div>
                     </div>
-
-<?php } else { ?>
+                    <?php } else { ?>
                     <a href="/register" class="item">Daftar</a>
                     <a href="/login" class="item">Masuk</a>
-<?php } ?>
+                <?php } ?>
                 </div>
-
-
-
             </div>
         </div>
         <div class="hero">

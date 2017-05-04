@@ -45,8 +45,12 @@ class Article extends PT_Controller {
         $article = $this->article_model->get_news_by_slug($slug);
         if (empty($article)) show_404();
         $this->get_userdata();
+        
         $this->set_data('post', $article);
-        $this->set_data('comments', []);
+
+        $comments = $this->db->query("SELECT P.AVATAR, P.NAMA_LENGKAP, CREATED_AT, KOMENTAR FROM PENGGUNA P, KOMENTAR_ARTIKEL K WHERE P.USERNAME=K.USERNAME_PENGGUNA AND K.SLUG_ARTIKEL='$slug'")->result_array();
+        // var_dump($comments);
+        $this->set_data('comments', $comments);
         //var_dump($this->data['post']);
         $this->load->view('article/detail',$this->data);
     }
@@ -126,5 +130,27 @@ class Article extends PT_Controller {
     }
     public function count(){
         var_dump($this->article_model->get_count_news());
+    }
+
+    public function like($slug){
+        //var_dump($_SESSION);
+        $username = $this->session->userdata('user_id');
+        // var_dump($username);
+        //EXECUTE LIKE_ARTIKEL('Kelereng','yudhaputrama');
+        $this->db->query("SELECT LIKE_ARTIKEL_A('$slug','$username') FROM DUAL")->row_array();
+    }
+
+    public function comment($slug){
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('komentar', 'Komentar', 'required');
+        if($this->form_validation->run()){
+            $data = [
+                'SLUG_ARTIKEL'=>$slug,
+                'USERNAME_PENGGUNA'=>$this->session->userdata('user_id'),
+                'KOMENTAR'=>$this->input->post('komentar')
+            ];
+            $this->db->insert('KOMENTAR_ARTIKEL',$data);
+        }
+        redirect('/'.$slug);
     }
 }

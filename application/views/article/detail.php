@@ -12,7 +12,6 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('public/css/semantic.css')?>">
 
-
     <script src="<?php echo base_url('public/js/jquery-3.2.1.min.js')?>"></script>
     <script src="<?php echo base_url('public/js/semantic.js')?>"></script>
     <script>
@@ -169,7 +168,7 @@
 <body>
 <div class="hero">
     <div class="ui container">
-<?php //if ($this->authentication->verify_role('ADMIN')){ ?>
+<?php if ($this->authentication->verify_role('ADMIN')){ ?>
         <div class="ui right floated teal buttons edit article" style="margin-top: 60px;">
             <a class="ui button" href="<?php echo site_url('admin/article/'.$post['SLUG'])?>"><i class="edit icon"></i> Sunting Artikel</a>
             <div class="ui floating dropdown icon button">
@@ -180,7 +179,7 @@
                 </div>
             </div>
         </div>
-<?php //} ?>
+<?php } ?>
         <div class="header-hero">
             <h1 class="ui header inverted title-hero"><?php echo $post['JUDUL'] ?></h1>
             <p><?php echo isset($post['POST_AT'])?$post['POST_AT']:""; ?></p>
@@ -231,25 +230,18 @@
                 <a href="/login" class="item">Masuk</a>
             <?php } ?>
         </div>
-
-
-
     </div>
 </div>
 
 <div class="ui text container article">
     <div class="overlay fixed">
         <div class="ui labeled icon horizontal menu">
-            <a class="item" onclick="$('.page.dimmer:first').dimmer('toggle');"><i class="heart icon"></i> Like</a>
-            <a class="item"><i class="comment icon"></i> Comment</a>
-        </div>
-    </div>
-    <div class="ui horizontal list">
-        <div class="item author-article">
-            <img class="ui circular tiny image" src="<?php echo base_url('public/images/molly.png');?>">
-            <div class="content">
-                <div class="ui sub header">Kurniawan</div>
-                Penulis
+            <a class="item" href="/<?php echo $post['SLUG'] ?>/like"><i class="<?php isset($liked)?"red ":""?>heart icon"></i> Like</a>
+            <div class="item">
+                <img class="ui circular mini image" src="<?php echo base_url('public/images/molly.png');?>">
+                <div class="content">
+                    <div class="ui sub header"><?php echo substr($post['NAMA_LENGKAP'],0,10) ?></div>
+                </div>
             </div>
         </div>
     </div>
@@ -259,31 +251,31 @@
         <?php foreach ($comments as $comment){ ?>
             <div class="comment">
                 <a class="avatar">
-                    <img src="<?php $comment['AVATAR'] ?>">
+                    <img src="/public/images/avatar/<?php echo isset($comment['AVATAR'])?$comment['AVATAR']:'Default.png' ?>">
                 </a>
                 <div class="content">
-                    <a class="author"><?php $comment['AVATAR'] ?></a>
+                    <a class="author"><?php echo $comment['NAMA_LENGKAP'] ?></a>
                     <div class="metadata">
-                        <span class="date"><?php $comment['CREATED_AT'] ?></span>
+                        <span class="date"><?php echo $comment['CREATED_AT'] ?></span>
                     </div>
                     <div class="text">
-                        <?php $comment['KOMENTAR'] ?>
+                        <?php echo $comment['KOMENTAR']->load() ?>
                     </div>
                 </div>
             </div>
         <?php } ?>
 
-        <form class="ui reply form">
+        <form class="ui reply form" method="post" action="/<?php echo $post['SLUG'] ?>/comment">
             <div class="field">
-                <textarea></textarea>
+                <textarea name="komentar" required></textarea>
             </div>
-            <div class="ui blue labeled submit icon button">
-                <i class="icon edit"></i> Add Reply
-            </div>
+            <button class="ui blue labeled submit icon button">
+                <i class="icon edit"></i> Kirim
+            </button>
         </form>
     </div>
 </div>
-
+<?php if(isset($game)){ ?>
 <div class="panel-bottom-play fixed">
     <div class="ui clearing segment">
         <div class="ui text container">
@@ -294,8 +286,7 @@
         </div>
     </div>
 </div>
-
-
+<?php }?>
 <div class="ui inverted vertical footer segment">
     <div class="ui container">
         <div class="ui stackable inverted divided equal height stackable grid">

@@ -8,7 +8,7 @@
                     <div class="ui segments">
                         <div class="ui segment">
                             <h5 class="ui header">
-                                Artikel Baru
+                                Permainan Baru
                             </h5>
                         </div>
                         <div class="ui clearing segment">
@@ -16,15 +16,15 @@
                                 <div class="ui form">
                                     <div class="field">
                                         <label>Nama</label>
-                                        <input type="text" placeholder="Nama" name="nama">
+                                        <input type="text" placeholder="Nama" name="nama" required>
                                     </div>
                                     <div class="field">
                                         <label>Gambar</label>
-                                        <input type="file" placeholder="Gambar" name="gambar">
+                                        <input type="file" placeholder="Gambar" name="gambar" required>
                                     </div>
                                     <div class="field">
                                         <label>Script</label>
-                                        <input type="file" placeholder="Gambar" name="script">
+                                        <input type="file" placeholder="Gambar" name="script" required>
                                     </div>
                                     <button class="ui blue right floated button" type="submit">Submit</button>
                                 </div>

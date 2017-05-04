@@ -35,8 +35,6 @@ class Admin extends PT_Controller {
 
     //Article New
     public function article_new(){
-//        var_dump($this->input->post());
-//        var_dump($this->authentication->get_user()['ID']);
         $article = new Article_model();
         $article->judul = $this->input->post('judul');
         $article->slug = url_title($article->judul);
@@ -47,10 +45,11 @@ class Admin extends PT_Controller {
         if($article->save_news()){
             $this->set_data('message', 'Berhasil menambahkan');
         }
-//        var_dump($article);
         $this->set_data('tags',$this->tag_model->get());
-        $this->set_data('categories',$this->category_model->get());
+        $this->set_data('categories',$this->category_model->get_other());
+        //var_dump($this->category_model->get_other());
         $this->set_data('games',$this->game_model->get());
+    
         $this->load->view('admin/article-new', $this->data);
     }
 
@@ -125,6 +124,8 @@ class Admin extends PT_Controller {
 
     //Article
     public function comment(){
+        $this->load->model('comment_model');
+        $this->set_data('comments', $this->comment_model->get_list());
         $this->load->view('admin/comment', $this->data);
     }
 
@@ -192,6 +193,7 @@ class Admin extends PT_Controller {
         if ($this->form_validation->run()==true){
             $this->load->library('upload');
             if ($this->upload->do_upload('gambar') && $this->upload->do_upload('script')){
+
                 redirect('admin/game');
             } else {
                 $this->set_data('message', 'Error upload data');
@@ -218,7 +220,7 @@ class Admin extends PT_Controller {
 
     //User List
     public function user(){
-        $this->set_data('members',[]);
+        $this->set_data('members',$this->user_model->get());
         $this->load->view('admin/user', $this->data);
     }
 
@@ -241,7 +243,8 @@ class Admin extends PT_Controller {
     }
 
     //User
-    public function user_delete(){
+    public function user_delete($username){
+        $this->user_model->remove($username);
         redirect('/admin/user');
     }
 

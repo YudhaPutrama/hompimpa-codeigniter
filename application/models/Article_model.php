@@ -22,7 +22,7 @@ class Article_model extends PT_Model {
 	 * @return	mixed
 	 */
     public function get_all_news($limit = null, $offset=null) {
-        $query = $this->db->get($this->table_name, $limit, $offset);
+        $query = $this->db->order_by('CREATED_AT','DESC')->get($this->table_name, $limit, $offset);
         // $query = $this->db->query("SELECT * FROM $this->table_name");
 //        return $query->result_array();
         return $query->result_array();
@@ -35,8 +35,8 @@ class Article_model extends PT_Model {
 	 * @return	mixed|string[]
 	 */
     public function get_news_by_slug($slug) {
-        $query = $this->db->get_where($this->table_name, array('SLUG' => $slug));
-        // $query = $this->db->query("SELECT * FROM NEWS WHERE slug='".$slug."'");
+        //$query = $this->db->get_where($this->table_name, array('SLUG' => $slug));
+        $query = $this->db->query("SELECT * FROM ARTIKEL B, PENGGUNA P WHERE slug='$slug' AND B.ID_PENGGUNA=P.ID");
         return $query->row_array();
     }
 
@@ -59,7 +59,7 @@ class Article_model extends PT_Model {
 	 */
     public function save_news() {
         if (is_null($this->judul)|| is_null($this->id_pengguna))return false;
-        if (is_null($this->slug)) $this->slug=url_title($this->judul);
+        if (is_null($this->slug)) $this->slug=strtolower(url_title($this->judul));
         $data = [
             "ID"=>$this->id,
             "SLUG"=>$this->slug,

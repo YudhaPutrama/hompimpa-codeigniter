@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 // Auth Routing
 $route['login'] = 'auth/login'; // view login page
 $route['register'] = 'auth/register'; // view login page
+$route['forgot'] = 'auth/forgot'; // view login page
 $route['logout'] = 'user/logout'; // view logout page
 $route['auth/logout'] = 'user/logout'; // view logout page
 $route['login/facebook'] = 'auth/facebook';
@@ -128,5 +129,9 @@ $route['gallery/(:any)'] = 'gallery/view/$1';
 // Gallery Module
 $route['notifications'] = 'user/notifications';
 
+
+$route['friend'] = 'friend/index';
 // Article Module
  $route['(:any)'] = 'article/view/$1';
+ $route['(:any)/like'] = 'article/like/$1';
+ $route['(:any)/comment'] = 'article/comment/$1';
