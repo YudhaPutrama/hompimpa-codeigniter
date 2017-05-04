@@ -28,11 +28,21 @@ class Tag_model extends PT_Model {
         }
     }
 
+    public function update($kode, $data){
+        $this->db->where('KODE_TAG', $kode)->update($this->table_name, $data);
+
+    }
+
     public function detachAll($kode_tag){
         return $this->db->where("KODE_TAG", $kode_tag)->delete("TAG_ARTIKEL");
     }
 
     public function remove(){
         return $this->db->where("KODE_TAG", $this->kode_tag)->delete($this->table_name);
+    }
+
+    public function tambah($data)
+    {
+        return $this->db->insert($this->table_name, $data);
     }
 }

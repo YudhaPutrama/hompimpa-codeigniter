@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <button class="ui fluid large teal submit button" type="submit"><i class="sign in icon"></i>Masuk</button>
-                <a class="ui fluid large blue button"><i class="facebook icon"></i>Masuk dengan Facebook</a>
+<!--                <a class="ui fluid large blue button"><i class="facebook icon"></i>Masuk dengan Facebook</a>-->
 <!--                <button class="ui fluid large blue button" type="submit">Login with Twitter</button>-->
             </div>
         </form>

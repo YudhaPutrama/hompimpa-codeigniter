@@ -5,6 +5,10 @@ class Category_model extends PT_Model {
     public $kode_kategori;
     public $nama_kategori;
 
+    public function tambah($data){
+        return $this->db->insert($this->table_name, $data);
+    }
+
     public function save(){
         if (is_null($this->kode_kategori)||is_null($this->nama_kategori)) return false;
         // Check kode kategori
@@ -24,9 +28,21 @@ class Category_model extends PT_Model {
         }
     }
 
-    public function get(){
+    public function get($kode=null){
+        if (is_null($kode)==false) return $this->db->where(
+            'KODE_KATEGORI',
+            $kode
+        )->get($this->table_name)->row_array();
         if (is_null($this->kode_kategori)) return false;
         return $this->db->where("KODE_KATEGORI", $this->kode_kategori)->get($this->table_name)->row_array();
+    }
+
+    public function get_other()
+    {
+        $sql = "SELECT KAT.KODE_KATEGORI KODE, KAT.NAMA_KATEGORI NAMA, COUNT(ART.ID) JUMLAH
+FROM KATEGORI KAT, ARTIKEL ART
+WHERE KAT.KODE_KATEGORI = ART.KODE_KATEGORI GROUP BY KAT.KODE_KATEGORI";
+        return $this->db->get($this->table_name)->result_array();
     }
 
     public function get_all()
@@ -46,5 +62,9 @@ class Category_model extends PT_Model {
         $query = $this->db->where('KODE_KATEGORI',$this->kode_kategori);
         $query = $query->get("ARTIKEL");
         return $query->result_array();
+    }
+
+    public function update($kode, $data){
+        return $this->db->where('KODE_KATEGORI', $kode)->update($this->table_name, $data);
     }
 }

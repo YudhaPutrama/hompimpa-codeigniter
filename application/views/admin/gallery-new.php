@@ -15,16 +15,8 @@
                             <form action="/admin/article/new" method="post">
                                 <div class="ui form">
                                     <div class="field">
-                                        <label>Nama</label>
-                                        <input type="text" placeholder="Nama" name="nama">
-                                    </div>
-                                    <div class="field">
-                                        <label>Gambar</label>
-                                        <input type="file" placeholder="Gambar" name="gambar">
-                                    </div>
-                                    <div class="field">
-                                        <label>Script</label>
-                                        <input type="file" placeholder="Gambar" name="script">
+                                        <label>Judul</label>
+                                        <input type="text" placeholder="Judul" name="judul">
                                     </div>
                                     <button class="ui blue right floated button" type="submit">Submit</button>
                                 </div>
@@ -35,6 +27,7 @@
             </div>
         </div>
         <!--Site Content-->
+
 
     </div>
     <!--maincontent-->

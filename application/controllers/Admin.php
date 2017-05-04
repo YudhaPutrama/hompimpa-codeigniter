@@ -3,6 +3,7 @@
 /**
  * @property  Tag_model tag_model
  * @property  Category_model category_model
+ * @property  CI_Upload upload
  */
 class Admin extends PT_Controller {
 
@@ -74,7 +75,8 @@ class Admin extends PT_Controller {
 
     //Category
     public function category(){
-        $this->set_data('categories', $this->category_model->get_all());
+        $this->set_data('categories', $this->category_model->get_other());
+//        var_dump($this->category_model->get_other());
 //        var_dump($this->category_model->get_all());
         $this->load->view('admin/category', $this->data);
     }
@@ -82,13 +84,12 @@ class Admin extends PT_Controller {
     //Category New
     public function category_new(){
         $data = array(
-            'nama'=>$this->input->post('nama_kategori'),
-            'kode'=>url_title($this->input->post('nama_kategori'))
+            'NAMA_KATEGORI'=>$this->input->post('nama_kategori'),
+            'KODE_KATEGORI'=>strtolower(url_title($this->input->post('nama_kategori')))
         );
-        $category = new Category_model();
-        $category->kode_kategori = $data['kode'];
-        $category->nama_kategori = $data['nama'];
-        $category->save();
+
+        $te = $this->category_model->tambah($data);
+//        var_dump($te);
         redirect('admin/category');
     }
 
@@ -98,53 +99,105 @@ class Admin extends PT_Controller {
     }
 
     //Category Update
-    public function category_update(){
-        redirect('admin/category');
+    public function category_update($kode){
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('kode', 'Kode', 'required');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        if ($this->form_validation->run()==true){
+            $data = array(
+                'KODE_KATEGORI' => $this->input->post('kode'),
+                'NAMA_KATEGORI' => $this->input->post('nama')
+            );
+            $this->category_model->update($kode, $data);
+            redirect('admin/category');
+        }
+        $this->set_data('category', $this->category_model->get($kode));
+        $this->load->view('admin/category-edit', $this->data);
     }
 
     //Category Delete
-    public function category_delete(){
+    public function category_delete($kode){
+        $category = new Category_model();
+        $category->kode_kategori = $kode;
+        $category->delete();
         redirect('admin/category');
     }
 
     //Article
+    public function comment(){
+        $this->load->view('admin/comment', $this->data);
+    }
+
+    //Article
     public function tag(){
+        $this->set_data('tags', $this->tag_model->get());
         $this->load->view('admin/tag', $this->data);
     }
 
     //Article
     public function tag_new(){
-        $this->load->view('admin/article', $this->data);
+        $data = array(
+            'NAMA_TAG'=>$this->input->post('nama'),
+            'KODE_TAG'=>strtolower(url_title($this->input->post('nama')))
+        );
+
+        $te = $this->tag_model->tambah($data);
+        redirect('admin/tag');
+//        $this->load->view('admin/tag', $this->data);
     }
 
     //Article
-    public function tag_view(){
-        $this->load->view('admin/article', $this->data);
+    public function tag_update($kode){
+//        redirect('admin/tag');
+//        echo $kode;
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('kode', 'Kode', 'required');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        if ($this->form_validation->run()==true){
+            $data = array(
+                'KODE_TAG' => $this->input->post('kode'),
+                'NAMA_TAG' => $this->input->post('nama')
+            );
+            $this->tag_model->update($data['KODE_TAG'], $data);
+            redirect('admin/tag');
+        }
+        $this->set_data('tag', $this->tag_model->get($kode));
+        $this->load->view('admin/tag-edit', $this->data);
     }
 
     //Article
-    public function tag_update(){
-        $this->load->view('admin/article', $this->data);
-    }
-
-    //Article
-    public function tag_delete(){
-        $this->load->view('admin/article', $this->data);
+    public function tag_delete($kode){
+        $tag = new Tag_model();
+        $tag->kode_tag = $kode;
+        $tag->remove();
+        redirect('admin/tag');
+//        $this->load->view('admin/article', $this->data);
     }
 
     //Article
     public function game(){
+        $this->set_data('games', $this->game_model->get());
         $this->load->view('admin/game', $this->data);
     }
 
     //Article
     public function game_score(){
-        $this->load->view('admin/game', $this->data);
+        $this->load->view('admin/game-score', $this->data);
     }
 
     //Article
     public function game_new(){
-        $this->load->view('admin/game', $this->data);
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nama','Nama','required');
+        if ($this->form_validation->run()==true){
+            $this->load->library('upload');
+            if ($this->upload->do_upload('gambar') && $this->upload->do_upload('script')){
+                redirect('admin/game');
+            } else {
+                $this->set_data('message', 'Error upload data');
+            }
+        }
+        $this->load->view('admin/game-new', $this->data);
     }
 
     //Article
@@ -159,28 +212,32 @@ class Admin extends PT_Controller {
 
     //Article
     public function game_delete(){
-        $this->load->view('admin/game', $this->data);
+        redirect('admin/tag');
+//        $this->load->view('admin/game', $this->data);
     }
 
     //User List
     public function user(){
-        $this->load->view('admin/article', $this->data);
+        $this->set_data('members',[]);
+        $this->load->view('admin/user', $this->data);
     }
 
     //User
     public function user_role(){
+        $this->set_data('roles',[]);
         $this->load->view('admin/role', $this->data);
     }
 
 
     //User
     public function user_view(){
-        $this->load->view('admin/article', $this->data);
+        $this->load->view('admin/user-detail', $this->data);
     }
 
     //User
     public function user_update(){
-        redirect('/admin/user');
+        redirect('admin/user');
+//        redirect('/admin/user');
     }
 
     //User
@@ -190,6 +247,7 @@ class Admin extends PT_Controller {
 
     //user
     public function ranking(){
+        $this->set_data('rankings',[]);
         $this->load->view('admin/ranking', $this->data);
     }
 

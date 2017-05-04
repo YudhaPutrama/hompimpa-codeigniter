@@ -104,35 +104,35 @@
                     <?php
                     // Like article and comment article
                     foreach ($notifications as $notification){
-                    ?>
-                    <div class="event">
-                        <div class="label">
-                            <img src="/public/images/avatar/<?php echo $notification['avatar'] ?>" alt="label-image" />
-                        </div>
-                        <div class="content">
-                            <div class="summary">
-                                <a class="user">
-                                    <?php echo $notification['nama'] ?>
-                                </a><?php echo $notification['event'] ?>
-                                <div class="date">
-                                    <?php echo $notification['time'] ?>
-                                </div>
+                        ?>
+                        <div class="event">
+                            <div class="label">
+                                <img src="/public/images/avatar/<?php echo $notification['avatar'] ?>" alt="label-image" />
                             </div>
-<!--                            <div class="extra text">-->
-<!--                                Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.-->
-<!--                            </div>-->
-<!--                            <div class="extra images">-->
-<!--                                <a><img src="/public/images/admin/bg/1.png" alt="bg-image" /></a>-->
-<!--                                <a><img src="/public/images/admin/bg/3.png" alt="bg-image" /></a>-->
-<!--                            </div>-->
-<!--                            <div class="meta">-->
-<!--                                <a class="like">-->
-<!--                                    <i class="like icon"></i> 4 Likes-->
-<!--                                </a>-->
-<!--                            </div>-->
+                            <div class="content">
+                                <div class="summary">
+                                    <a class="user">
+                                        <?php echo $notification['nama'] ?>
+                                    </a><?php echo $notification['event'] ?>
+                                    <div class="date">
+                                        <?php echo $notification['time'] ?>
+                                    </div>
+                                </div>
+                                <!--                            <div class="extra text">-->
+                                <!--                                Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.-->
+                                <!--                            </div>-->
+                                <!--                            <div class="extra images">-->
+                                <!--                                <a><img src="/public/images/admin/bg/1.png" alt="bg-image" /></a>-->
+                                <!--                                <a><img src="/public/images/admin/bg/3.png" alt="bg-image" /></a>-->
+                                <!--                            </div>-->
+                                <!--                            <div class="meta">-->
+                                <!--                                <a class="like">-->
+                                <!--                                    <i class="like icon"></i> 4 Likes-->
+                                <!--                                </a>-->
+                                <!--                            </div>-->
+                            </div>
                         </div>
-                    </div>
-                    <?php
+                        <?php
                     }
                     ?>
                 </div>

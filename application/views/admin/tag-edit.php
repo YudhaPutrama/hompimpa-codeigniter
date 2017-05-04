@@ -8,23 +8,16 @@
                     <div class="ui segments">
                         <div class="ui segment">
                             <h5 class="ui header">
-                                Artikel Baru
+                                Tag Edit (<?php echo $tag['KODE_TAG'] ?>)
                             </h5>
                         </div>
                         <div class="ui clearing segment">
-                            <form action="/admin/article/new" method="post">
+                            <form action="/admin/tag/<?php echo $tag['KODE_TAG'] ?>/update" method="post">
+                                <input type="hidden" name="kode" value="<?php echo $tag['KODE_TAG'] ?>">
                                 <div class="ui form">
                                     <div class="field">
-                                        <label>Nama</label>
-                                        <input type="text" placeholder="Nama" name="nama">
-                                    </div>
-                                    <div class="field">
-                                        <label>Gambar</label>
-                                        <input type="file" placeholder="Gambar" name="gambar">
-                                    </div>
-                                    <div class="field">
-                                        <label>Script</label>
-                                        <input type="file" placeholder="Gambar" name="script">
+                                        <label>Nama Tag</label>
+                                        <input type="text" placeholder="nama" name="nama" value="<?php echo $tag['NAMA_TAG'] ?>">
                                     </div>
                                     <button class="ui blue right floated button" type="submit">Submit</button>
                                 </div>
@@ -35,6 +28,7 @@
             </div>
         </div>
         <!--Site Content-->
+
 
     </div>
     <!--maincontent-->

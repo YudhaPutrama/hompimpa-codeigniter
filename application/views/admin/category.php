@@ -20,7 +20,7 @@
                                 <tr>
                                     <th>Kode</th>
                                     <th>Nama</th>
-                                    <th>Pengguna</th>
+                                    <th>Jumlah Artikel</th>
                                     <th>Aksi</th>
                                 </tr>
                                 </thead>
@@ -32,8 +32,8 @@
                                         <td><?php echo $category['NAMA_KATEGORI'] ?></td>
                                         <td><?php echo $category['JUMLAH'] ?></td>
                                         <td>
-                                            <a class="ui teal button" href="/admin/article/<?php echo $category['SLUG'] ?>"><i class="pencil icon"></i>Sunting</a>
-                                            <a class="ui red button" href="/admin/article/<?php echo $category['SLUG'] ?>/delete"><i class="trash icon"></i>Hapus</a>
+                                            <a class="ui teal button" id="btn-edit" href="/admin/category/<?php echo $category['KODE_KATEGORI'] ?>/update"><i class="pencil icon"></i>Sunting</a>
+                                            <a class="ui red button" id="btn-remove" href="/admin/category/<?php echo $category['KODE_KATEGORI'] ?>/delete"><i class="trash icon"></i>Hapus</a>
                                         </td>
                                     </tr>
                                 <?php
@@ -57,22 +57,12 @@
         </div>
         <div class="content">
             <div class="ui form">
-                <form method="post" id="kategori_baru" action="<?php base_url('/admin/category/new') ?>">
+                <form method="post" id="kategori_baru" action="<?php echo base_url('/admin/category/new') ?>">
 <!--                <h4 class="ui dividing header">Give us your feedback</h4>-->
                 <div class="field">
                     <label>Nama Kategori</label>
                     <input type="text" name="nama_kategori"></input>
                 </div>
-<!--                <div class="field">-->
-<!--                    <label>Feedback</label>-->
-<!--                    <textarea></textarea>-->
-<!--                </div>-->
-<!--                <div class="field">-->
-<!--                    <div class="ui checkbox">-->
-<!--                        <input type="checkbox" checked="checked" name="contact-me">-->
-<!--                        <label>It's okay to contact me.</label>-->
-<!--                    </div>-->
-<!--                </div>-->
                 </form>
             </div>
         </div>
