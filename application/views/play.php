@@ -70,8 +70,15 @@
             });
         });
     </script>
+    <script>
+//    var socket = io('http://hompimpa.trivalier.id:8080');
+//    socket.on('news', function (data) {
+//        console.log(data);
+//        socket.emit('message', { my: 'data' });
+//    });
+</script>
     <script src="<?php echo base_url('public/js/phaser.min.js');?>"></script>
-    <script src="<?php echo base_url('public/games/scripts/missile_follow.js');?>"></script>
+    <script src="<?php echo base_url('public/games/scripts/'.$gamesfile.'.js');?>"></script>
 <?php include ("templates/public/footer.php"); ?>
 </body>
 </html>

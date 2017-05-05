@@ -95,10 +95,10 @@
                 </a>-->
             </div>
 
-            <a class="item" href="/admin/ranking">
+            <!--<a class="item" href="/admin/ranking">
                 <i class="ion-stats-bars titleIcon icon"></i>
                 Peringkat
-            </a>
+            </a>-->
 
         </div>
 

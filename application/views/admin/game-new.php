@@ -12,21 +12,17 @@
                             </h5>
                         </div>
                         <div class="ui clearing segment">
-                            <form action="/admin/article/new" method="post">
+                            <?php echo form_open_multipart('admin/game/new');?>
                                 <div class="ui form">
                                     <div class="field">
                                         <label>Nama</label>
                                         <input type="text" placeholder="Nama" name="nama" required>
                                     </div>
                                     <div class="field">
-                                        <label>Gambar</label>
-                                        <input type="file" placeholder="Gambar" name="gambar" required>
-                                    </div>
-                                    <div class="field">
                                         <label>Script</label>
-                                        <input type="file" placeholder="Gambar" name="script" required>
+                                        <input type="text" placeholder="Script" name="script" required>
                                     </div>
-                                    <button class="ui blue right floated button" type="submit">Submit</button>
+                                    <button class="ui blue right floated button" type="submit" value="upload">Submit</button>
                                 </div>
                             </form>
                         </div>

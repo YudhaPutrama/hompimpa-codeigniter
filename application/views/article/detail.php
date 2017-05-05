@@ -168,7 +168,7 @@
 <body>
 <div class="hero">
     <div class="ui container">
-<?php if ($this->authentication->verify_role('ADMIN')){ ?>
+<?php if ($this->authentication->is_logged()){ ?>
         <div class="ui right floated teal buttons edit article" style="margin-top: 60px;">
             <a class="ui button" href="<?php echo site_url('admin/article/'.$post['SLUG'])?>"><i class="edit icon"></i> Sunting Artikel</a>
             <div class="ui floating dropdown icon button">
@@ -236,7 +236,7 @@
 <div class="ui text container article">
     <div class="overlay fixed">
         <div class="ui labeled icon horizontal menu">
-            <a class="item" href="/<?php echo $post['SLUG'] ?>/like"><i class="<?php isset($liked)?"red ":""?>heart icon"></i> Like</a>
+            <a class="item" href="/<?php echo $this->authentication->is_logged()?$post['SLUG'].'/like':'login' ?>"><i class="<?php isset($liked)?"red ":""?>heart icon"></i> Like</a>
             <div class="item">
                 <img class="ui circular mini image" src="<?php echo base_url('public/images/molly.png');?>">
                 <div class="content">

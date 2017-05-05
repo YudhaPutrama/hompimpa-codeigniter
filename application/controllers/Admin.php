@@ -189,15 +189,30 @@ class Admin extends PT_Controller {
     //Article
     public function game_new(){
         $this->load->library('form_validation');
+        $config['upload_path']='./public/';
+        $config['allowed_types']='jpg|png|bmp|js';
+        $this->load->library('upload',$config);
         $this->form_validation->set_rules('nama','Nama','required');
-        if ($this->form_validation->run()==true){
-            $this->load->library('upload');
-            if ($this->upload->do_upload('gambar') && $this->upload->do_upload('script')){
-
-                redirect('admin/game');
-            } else {
-                $this->set_data('message', 'Error upload data');
-            }
+        // $this->form_validation->set_rules('gambar','Gambar','required');
+        $this->form_validation->set_rules('script','Script','required');
+        
+        // var_dump($_FILES);
+        if ($this->form_validation->run()){
+            $data = [
+                'SLUG'=>strtolower(url_title($this->input->post('nama'))),
+                'NAMA_PERMAINAN'=>$this->input->post('nama'),
+                'SCRIPT'=>$this->input->post('script')
+            ];
+            $this->db->insert('PERMAINAN', $data);
+            // if ($this->upload->do_upload('gambar') && $this->upload->do_upload('script')){
+                
+                
+                //$script['upload_path']=
+                //$script['allowed_types']=
+                //redirect('admin/game');
+            // } else {
+                // $this->set_data('message', 'Error upload data');
+            // }
         }
         $this->load->view('admin/game-new', $this->data);
     }

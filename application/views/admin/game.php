@@ -37,8 +37,8 @@
 <!--                                        <td>--><?php //echo $article['NUM_LIKE'] ?><!--</td>-->
 <!--                                        <td>--><?php //echo $article['CREATED_AT'] ?><!--</td>-->
                                         <td>
-                                            <a class="ui teal button" href="/admin/article/<?php echo $article['SLUG'] ?>"><i class="pencil icon"></i>Sunting</a>
-                                            <a class="ui red button" href="/admin/article/<?php echo $article['SLUG'] ?>/delete"><i class="trash icon"></i>Hapus</a>
+                                            <a class="ui teal button" href="/admin/game/<?php echo $game['SLUG'] ?>"><i class="pencil icon"></i>Sunting</a>
+                                            <a class="ui red button" href="/admin/game/<?php echo $game['SLUG'] ?>/delete"><i class="trash icon"></i>Hapus</a>
                                         </td>
                                     </tr>
                                     <?php

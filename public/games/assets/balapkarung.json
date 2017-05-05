@@ -1,0 +1,75 @@
+{
+  "play": [
+    {
+      "type": "spritesheet",
+      "key": "budi_jump",
+      "url": "/public/games/assets/sprites/budi_jump.png",
+      "frameWidth": 100,
+      "frameHeight": 180,
+      "frameMax": 6,
+      "margin": 0,
+      "spacing": 0
+    },
+    {
+      "type": "image",
+      "key": "01",
+      "url": "/public/games/assets/images/background/01.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "02",
+      "url": "/public/games/assets/images/background/02.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "03",
+      "url": "/public/games/assets/images/background/03.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "04",
+      "url": "/public/games/assets/images/background/04.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "05",
+      "url": "/public/games/assets/images/background/05.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "06",
+      "url": "/public/games/assets/images/background/06.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "07",
+      "url": "/public/games/assets/images/background/07.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "09",
+      "url": "/public/games/assets/images/background/09.png",
+      "overwrite": false
+    },
+    {
+      "type": "image",
+      "key": "11",
+      "url": "/public/games/assets/images/background/11.png",
+      "overwrite": false
+    }
+  ],
+  "meta": {
+    "generated": "1493673509059",
+    "app": "Phaser Editor",
+    "url": "http://phasereditor.boniatillo.com",
+    "version": "1.0",
+    "copyright": "Arian Fornaris (c) 2015,2016"
+  }
+}
