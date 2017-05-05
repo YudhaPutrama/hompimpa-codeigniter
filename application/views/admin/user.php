@@ -37,7 +37,7 @@
                                         <!--<td><?php echo $member['ROLE'] ?></td>-->
 <!--                                        <td>--><?php //echo $article['CREATED_AT'] ?><!--</td>-->
                                         <td>
-                                            <a class="ui teal button" href="/admin/user/<?php echo $member['USERNAME'] ?>/update"><i class="pencil icon"></i>Sunting</a>
+                                            <!--<a class="ui teal button" href="/admin/user/<?php echo $member['USERNAME'] ?>/update"><i class="pencil icon"></i>Sunting</a>-->
                                             <a class="ui red button" href="/admin/user/<?php echo $member['USERNAME'] ?>/delete"><i class="trash icon"></i>Hapus</a>
                                         </td>
                                     </tr>

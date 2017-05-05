@@ -29,7 +29,7 @@
                 <?php echo is_null($user['NAMA_LENGKAP'])?$user["USERNAME"]:$user["NAMA_LENGKAP"] ?> <i class="dropdown icon"></i>
                 <div class="menu ">
                     <div class="item"><a href="/me">Profil</a></div>
-                    <div class="item"><a href="/setting">Pengaturan</a></div>
+                    <div class="item"><a href="/admin">Pengaturan</a></div>
                     <div class="divider"></div>
                     <div class="item" >
                         <a href="/logout"><i class="sign out icon"></i>Keluar</a>

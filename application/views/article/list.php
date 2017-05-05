@@ -120,7 +120,7 @@
         <div class="ui text container">
         <?php foreach ($posts as $post){ ?>
             <h3 class="ui header"><?php echo $post['JUDUL']; ?></h3>
-            <div class="featured images"></div>
+            <div class="featured images" style="background-image:url('/public/images/gallery/<?php echo $post['GAMBAR'] ?>')"></div>
             <p><?php echo $post['KONTEN']->read(500) ?></p>
             <a class="ui large button" href="<?php echo site_url($post['SLUG'])?>">Baca Lebih</a>
         <?php } ?>

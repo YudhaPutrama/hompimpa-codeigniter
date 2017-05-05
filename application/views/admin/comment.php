@@ -10,8 +10,8 @@
                     <div class="ui segments">
                         <div class="ui clearing segment">
                             <h3 class="ui header">
-                                Datatable
-                                <a class="ui blue right floated mini button" href="/admin/article/new"><i class="plus icon"></i>Tambah</a>
+                                Komentar
+                                <!--<a class="ui blue right floated mini button" href="/admin/article/new"><i class="plus icon"></i>Tambah</a>-->
                             </h3>
                         </div>
                         <div class="ui segment">
@@ -31,7 +31,7 @@
                                     <tr>
                                         <td><?php echo $comment['JUDUL'] ?></td>
                                         <td><?php echo $comment['NAMA_LENGKAP'] ?></td>
-                                        <td><?php echo $comment['KOMENTAR'] ?></td>
+                                        <td><?php echo $comment['KOMENTAR']->load() ?></td>
                                         <td>
                                             <a class="ui teal button" href="/admin/comment/<?php echo $comment['ID'] ?>"><i class="pencil icon"></i>Sunting</a>
                                             <a class="ui red button" href="/admin/comment/<?php echo $comment['ID'] ?>/delete"><i class="trash icon"></i>Hapus</a>

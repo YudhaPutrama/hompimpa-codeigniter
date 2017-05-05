@@ -10,7 +10,7 @@
                     <div class="ui segments">
                         <div class="ui clearing segment">
                             <h3 class="ui header">
-                                Datatable
+                                Permainan
                                 <a class="ui blue right floated mini button" href="/admin/article/new"><i class="plus icon"></i>Tambah</a>
                             </h3>
                         </div>

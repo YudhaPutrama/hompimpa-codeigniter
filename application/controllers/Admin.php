@@ -19,6 +19,7 @@ class Admin extends PT_Controller {
     }
 
     public function index(){
+        $this->load->model('comment_model');
         $this->load->view('admin/dashboard', $this->data);
     }
 

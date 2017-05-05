@@ -5,8 +5,9 @@ class Gallery extends PT_Controller {
             'NAMA_FILE'=>'images5.jpg',
             'JUDUL'=>'Cantik'
         );
+        $gambar = $this->db->get('GAMBAR')->result_array();
 
-        $this->set_data('galleries',$dump);
+        $this->set_data('galleries',$gambar);
         $this->load->view('gallery', $this->data);
     }
 
