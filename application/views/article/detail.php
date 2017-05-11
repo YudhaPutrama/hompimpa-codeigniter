@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -275,7 +274,7 @@
         </form>
     </div>
 </div>
-<?php if(isset($game)){ ?>
+
 <div class="panel-bottom-play fixed">
     <div class="ui clearing segment">
         <div class="ui text container">
@@ -286,7 +285,7 @@
         </div>
     </div>
 </div>
-<?php }?>
+
 <div class="ui inverted vertical footer segment">
     <div class="ui container">
         <div class="ui stackable inverted divided equal height stackable grid">
@@ -309,7 +308,7 @@
             <div class="seven wide column">
                 <h4 class="ui inverted header">Tentang Kami</h4>
                 <p>Kami Mahasiswa D3 Teknik Informatika Telkom University</p>
-                <!--                        <p>Website ini kami dedikasikan untuk pembelajaran tentang penggiat permainan tradisional</p>-->
+                <!--<p>Website ini kami dedikasikan untuk pembelajaran tentang penggiat permainan tradisional</p>-->
             </div>
         </div>
     </div>

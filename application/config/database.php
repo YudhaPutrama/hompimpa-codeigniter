@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle.trivalier.id)(PORT=49161))(CONNECT_DATA=(SID=XE)))',
+	'hostname' => '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=172.17.0.4)(PORT=1521))(CONNECT_DATA=(SID=XE)))',
 	'username' => 'hompimpa',
 	'password' => 'hompimpa',
 	'database' => '',
