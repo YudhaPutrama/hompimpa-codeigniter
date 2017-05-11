@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="hero">
-            <div class="ui inverted vertical masthead center aligned segment">
+            <div class="ui inverted vertical masthead center aligned segment" style="background: url('public/images/hero.jpg')">
                 <div class="ui text container">
                     <h1 class="ui inverted header">
                         HOMPIMPA
@@ -62,10 +62,10 @@
                     <div class="row">
                         <div class="eight wide column">
                             <h2 class="ui header">Telusuri dan Pelajari</h2>
-<!--                            <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>-->
+                            <p>Temukan berbagai macam artikel menarik tentang permainan tradisional</p>
                         </div>
                         <div class="six wide right floated column">
-                            <img src="/public/images/search.png" class="ui large bordered rounded image">
+                            <img src="/public/images/book.jpg" class="ui large bordered rounded image">
                         </div>
                     </div>
                 </div>
@@ -75,11 +75,11 @@
                 <div class="ui middle aligned stackable grid container">
                     <div class="row">
                         <div class="six wide left floated column">
-                            <img src="/public/images/play2.png" class="ui large bordered rounded image">
+                            <img src="/public/images/marbles.jpg" class="ui large bordered rounded image">
                         </div>
                         <div class="eight wide column">
                             <h2 class="ui header">Mainkan</h2>
-<!--                            <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>-->
+                            <p>Mainkan beberapa permainan tentang permainan tradisional</p>
                         </div>
 
                     </div>

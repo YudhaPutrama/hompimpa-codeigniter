@@ -63,7 +63,12 @@ $route['login/facebook'] = 'auth/facebook';
 $route['login/twitter'] = 'auth/twitter';
 
 // Profile Routing
+$route['setting'] = 'user/setting';
 $route['me'] = 'user/me';
+$route['me/artikel'] = 'user/article';
+$route['me/post_artikel'] = 'user/post_article';
+$route['me/update_profil'] = 'user/update_profil';
+$route['upload-photo'] = 'user/upload';
 
 // Search Module
 $route['search/(:any)'] = 'article/search/$1';

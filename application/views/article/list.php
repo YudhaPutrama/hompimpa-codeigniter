@@ -52,10 +52,24 @@
         width: 100%;
         padding-top: 60%;
         background-color: #bcbec0;
+        background-size: cover;
     }
     .header-hero p{
         font-size: 18px!important;
     }
+    .main.container {
+        position: relative;
+        width: 700px !important;
+        left: 0px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .play.red.ribbon {
+        float: left;
+        position: relative;
+        top: 20px;
+    }
+    
 </style>
 <!-- Page Contents -->
 <div class="pusher">
@@ -115,33 +129,40 @@
             </div>
         </div>
     </div>
+    <div class="ui main container segments">
+        <div class="ui segment">
+            <div class="ui text">
+            <?php foreach ($posts as $post){ ?>
+                <h2 class="ui header"><?php echo $post['JUDUL']; ?></h2>
+                <?php 
+                if($post['ID_PERMAINAN']!=null){
+                ?>
+                <div class="ui play red ribbon label">
+                    <i class="mouse icon"></i> Permainan
+                </div>
+                <?php } ?>
+                <div class="featured images" style="background-image:url('/public/images/gallery/<?php echo $post['GAMBAR'] ?>')"></div>
+                <p><?php echo $post['KONTEN']->read(500) ?></p>
+                <a class="ui button" href="<?php echo site_url($post['SLUG'])?>">Baca Lebih</a>
+                <?php if($post['ID_PERMAINAN']!=null){ ?>
+                <a class="ui red button" href="<?php echo site_url('game/'.$post['ID_PERMAINAN'].'/play')?>"><i></i>Mainkan</a>
+                <?php } ?>
+                <div class="ui right floated labeled button" tabindex="0">
+                    <a class="ui button" href="<?php echo site_url($post['ID'].'/like')?>">
+                        <i class="heart icon"></i>
+                    </a>
+                    <a class="ui basic left pointing label">
+                        <?php echo $post['NUM_LIKE'] ?>
+                    </a>
+                </div>
+            <?php } ?>
+                <div class="ui center aligned basic segment">
+                    <?php echo $this->pagination->create_links() ?>
+                </div>
 
-    <div class="ui vertical stripe segment">
-        <div class="ui text container">
-        <?php foreach ($posts as $post){ ?>
-            <h3 class="ui header"><?php echo $post['JUDUL']; ?></h3>
-            <div class="ui red ribbon label">
-                <i class="mouse icon"></i> Permainan
             </div>
-            <div class="featured images" style="background-image:url('/public/images/gallery/<?php echo $post['GAMBAR'] ?>')"></div>
-            <p><?php echo $post['KONTEN']->read(500) ?></p>
-            <a class="ui large button" href="<?php echo site_url($post['SLUG'])?>">Baca Lebih</a>
-        <?php } ?>
-            <div class="ui center aligned basic segment">
-<!--                <div class="ui horizontal divider header">Halaman Lain</div>-->
-                <?php echo $this->pagination->create_links() ?>
-<!--                <div class="ui buttons">-->
-<!--                    <button class="ui button"><i class="left arrow icon"></i></button>-->
-<!--                    <button class="blue ui button">1</button>-->
-<!--                    <button class="ui button">2</button>-->
-<!--                    <button class="ui button">3</button>-->
-<!--                    <button class="ui button"><i class="right arrow icon"></i></button>-->
-<!--                </div>-->
-            </div>
-
         </div>
     </div>
-
 
     <div class="ui inverted vertical footer segment">
         <div class="ui container">

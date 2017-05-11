@@ -132,12 +132,24 @@ class Article extends PT_Controller {
         var_dump($this->article_model->get_count_news());
     }
 
-    public function like($slug){
+    public function like($id){
         //var_dump($_SESSION);
-        $username = $this->session->userdata('user_id');
+        //$username = $this->session->userdata('user_id');
         // var_dump($username);
         //EXECUTE LIKE_ARTIKEL('Kelereng','yudhaputrama');
-        $this->db->query("SELECT LIKE_ARTIKEL_A('$slug','$username') FROM DUAL")->row_array();
+        $data=[
+            'ID_ARTIKEL'=>$id,
+            'ID_PENGGUNA'=>$this->session->userdata('id_pengguna')
+        ];
+        $this->db->db_debug = FALSE;
+        try{
+            $this->db->insert('SUKA_ARTIKEL', $data);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        //echo $this->db->_error_message();
+        redirect('/article');
+        //$this->db->query("SELECT LIKE_ARTIKEL_A('$slug','$username') FROM DUAL")->row_array();
     }
 
     public function comment($slug){

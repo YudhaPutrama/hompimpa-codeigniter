@@ -106,6 +106,10 @@ class Authentication {
         if ($this->is_logged()) return false;
         if ($this->check_auth($identifier, $password)){
             $this->set_auth($identifier);
+            $user = $this->get_user();
+            $this->CI->session->set_userdata('id_pengguna',$user['ID']);
+            $this->CI->session->set_userdata('username',$user['USERNAME']);
+            $this->CI->session->set_userdata('role',$user['ROLE']);
             redirect($this->config['welcome_redirect']);
         } else {
             $this->clear_auth();

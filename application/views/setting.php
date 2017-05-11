@@ -1,5 +1,12 @@
-<?php include("templates/public/header.php"); ?>
+<?php include("templates/public/header.php");
+$user = $this->authentication->get_user();
+?>
     <!-- Page Contents -->
+    <style>
+        .column{
+            max-width:inherit;
+        }
+    </style>
     <div class="pusher">
         <div class="ui borderless main menu fixed">
             <div class="ui container">
@@ -121,21 +128,45 @@
                                 <i class="setting icon"></i>
                                 Pengaturan
                             </a>
+                            <a class="ui button" href="/report">
+                                <i class="warning sign icon"></i>
+                                Laporkan
+                            </a>
                         </div>
                     </div>
                 <!--</div>-->
             </div>
-            <div class="eight wide column">
-                <h3 class="ui header">Status</h3>
+            <div class="twelve wide column">
+                <h3 class="ui header">Pengaturan</h3>
                 <div class="row" style="margin-bottom: 20px">
                     <div class="ui segment">
                         <div class="ui feed timeline">
                             <div class="event">
                                 <div class="ui form" style="width:100%">
-                                <form method="post">
+                                <form method="post" action="/me/update_profil">
                                     <div class="field">
-                                        <!--<label>Berita</label>-->
-                                        <textarea rows="3" name='berita'></textarea>
+                                        <label>Username</label>
+                                        <input type="text" placeholder="Username" name="username" disabled value="<?php echo $this->session->userdata('username') ?>">
+                                    </div>
+                                    <div class="field">
+                                        <label>Nama Lengkap</label>
+                                        <input type="text" placeholder="Nama Lengkap" name="fullname" value="<?php echo $user['NAMA_LENGKAP']?>">
+                                    </div>
+                                    <div class="field">
+                                        <label>Biodata</label>
+                                        <textarea class="trumbowygeditor" name="biodata"><?php echo $user['BIODATA']==null?'':$user['BIODATA']->load()?></textarea>
+                                    </div>
+                                    <div class="field">
+                                        <label>Email</label>
+                                        <input type="text" name="email" value="<?php echo $user['EMAIL']?>">
+                                    </div>
+                                    <div class="field">
+                                        <label>Jenis Kelamin</label>
+                                        <select name="jenis_kelamin" class="ui fluid dropdown" required>
+                                            <option value="">Jenis Kelamin</option>
+                                            <option value="1" <?php echo $user['JENIS_KELAMIN']==1?'selected':'' ?>>Laki-laki</option>
+                                            <option value="2" <?php echo $user['JENIS_KELAMIN']==2?'selected':'' ?>>Perempuan</option>
+                                        </select>
                                     </div>
                                     <button type="submit" class="ui submit button">Submit</button>
                                 </form>
@@ -145,103 +176,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="ui segment">
-                        <h5 class="ui dividing header">
-                            Terbaru
-                        </h5>
-                        <div class="ui feed timeline">
-                            <?php
-                            // Like article and comment article
-                            //var_dump($news);
-                            foreach ($news as $item){
-                                
-                            ?>
-                            <div class="event">
-                                <div class="label">
-                                    <img src="/public/images/avatar/<?php echo is_null($item['AVATAR'])?'Default.png':$item['AVATAR'] ?>" alt="label-image" />
-                                </div>
-                                <div class="content">
-                                    <div class="summary">
-                                        <a class="user">
-                                            <?php echo is_null($item['NAMA_LENGKAP'])?$item['USERNAME']:$item['NAMA_LENGKAP'] ?>
-                                        </a>
-                                        <div class="date">
-                                            <?php 
-                                            //var_dump($item['CREATED_AT']);
-                                            //$date = new DateTime("j-M-Y h.i.s.u A", $item['CREATED_AT']);  
-                                            $timezone = new DateTimeZone('Asia/Jakarta');
-                                            $date = DateTime::createFromFormat("j-M-y h.i.s.u A",$item['CREATED_AT']);
-                                            $date = $date->setTimeZone($timezone);
-                                            $converteddate = $date->format('M d,Y G:i');
-                                            echo $converteddate;
-                                            ?>
-                                        </div>
-                                        <p>
-                                        <?php echo $item['BERITA'] ?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-                            }
-                            ?>
-                        </div>
-                    </div>
-                </div>
-                
             </div>
-            <div class="four wide column">
-                <h3 class="ui header">Permintaan Pertemanan</h3>
-                <div class="ui cards">
-                <?php if(isset($friendreq)) {foreach($friendreq as $req){ ?>
-                    <div class="card">
-                        <div class="content">
-                        <img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg">
-                        <div class="header">
-                            Elliot Fu
-                        </div>
-                        <div class="meta">
-                            Friends of Veronika
-                        </div>
-                        <div class="description">
-                            Elliot requested permission to view your contact details
-                        </div>
-                        </div>
-                        <div class="extra content">
-                        <div class="ui two buttons">
-                            <div class="ui basic green button">Approve</div>
-                            <div class="ui basic red button">Decline</div>
-                        </div>
-                        </div>
-                    </div>
-                <?php }
-                    if(count($friendreq<1)) echo "<h4>Tidak Ada</h4>";
-                } else {echo "<h5 class='ui header'>Tidak Ada</h5>";} ?>
-                </div>
-                <h3 class="ui header">Permintaan Permainan</h3>
-                <div class="ui cards">
-                <?php if(isset($friendreq)){foreach($playreq as $req){ ?>
-                    <div class="card">
-                        <div class="content">
-                        <img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg">
-                        <div class="header">
-                            Petak Umpet
-                        </div>
-                        <div class="meta">
-                            Zahra
-                        </div>
-                        <div class="description">
-                            Zahra mengajak anda bermain Petak Umpet
-                        </div>
-                        </div>
-                        <div class="extra content">
-                        <div class="ui basic fluid red button">Mainkan</div>
-                        </div>
-                    </div>
-                <?php }} else {echo "<h4>Tidak Ada</h4>";} ?>
-                </div>
-            </div>
+            
         </div>
     </div>
 

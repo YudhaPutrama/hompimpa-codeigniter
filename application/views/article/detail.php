@@ -100,6 +100,7 @@
             padding: 5em 0em;
         }
         .hero {
+            background-size: cover;
             position: relative;
             overflow: hidden;
             /*text-align: center;*/
@@ -125,7 +126,6 @@
             width: 100%;
             height: 100%;
             content: '';
-            background-size: cover;
             opacity: 0.45;
         }
         .hero .container {
@@ -165,7 +165,7 @@
 
 </head>
 <body>
-<div class="hero">
+<div class="hero" style="background-image:url('/public/images/gallery/<?php echo $post['GAMBAR'] ?>')">
     <div class="ui container">
 <?php if ($this->authentication->is_logged()){ ?>
         <div class="ui right floated teal buttons edit article" style="margin-top: 60px;">
@@ -255,7 +255,14 @@
                 <div class="content">
                     <a class="author"><?php echo $comment['NAMA_LENGKAP'] ?></a>
                     <div class="metadata">
-                        <span class="date"><?php echo $comment['CREATED_AT'] ?></span>
+                        <span class="date"><?php
+                        $timezone = new DateTimeZone('Asia/Jakarta');
+                        $date = DateTime::createFromFormat("j-M-y h.i.s.u A",$comment['CREATED_AT']);
+                        $date = $date->setTimeZone($timezone);
+                        $converteddate = $date->format('M d,Y G:i');
+                        echo $converteddate;
+                        //echo $comment['CREATED_AT']
+                        ?></span>
                     </div>
                     <div class="text">
                         <?php echo $comment['KOMENTAR']->load() ?>
@@ -274,7 +281,10 @@
         </form>
     </div>
 </div>
-
+<?php
+//var_dump($post);
+if($post['ID_PERMAINAN']!=null){
+ ?>
 <div class="panel-bottom-play fixed">
     <div class="ui clearing segment">
         <div class="ui text container">
@@ -285,7 +295,7 @@
         </div>
     </div>
 </div>
-
+<?php } ?>
 <div class="ui inverted vertical footer segment">
     <div class="ui container">
         <div class="ui stackable inverted divided equal height stackable grid">

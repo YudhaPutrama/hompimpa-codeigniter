@@ -1,5 +1,10 @@
 <?php include("templates/public/header.php"); ?>
     <!-- Page Contents -->
+    <style>
+        .column{
+            max-width:inherit;
+        }
+    </style>
     <div class="pusher">
         <div class="ui borderless main menu fixed">
             <div class="ui container">
@@ -121,21 +126,44 @@
                                 <i class="setting icon"></i>
                                 Pengaturan
                             </a>
+                            <a class="ui button" href="/setting">
+                                <i class="warning sign icon"></i>
+                                Laporkan
+                            </a>
                         </div>
                     </div>
                 <!--</div>-->
             </div>
-            <div class="eight wide column">
-                <h3 class="ui header">Status</h3>
+            <div class="twelve wide column">
+                <h3 class="ui header">Artikel</h3>
                 <div class="row" style="margin-bottom: 20px">
                     <div class="ui segment">
                         <div class="ui feed timeline">
                             <div class="event">
                                 <div class="ui form" style="width:100%">
-                                <form method="post">
+                                <form method="post" action="/me/post_artikel">
                                     <div class="field">
-                                        <!--<label>Berita</label>-->
-                                        <textarea rows="3" name='berita'></textarea>
+                                        <label>Judul</label>
+                                        <input type="text" placeholder="Judul" name="judul" required>
+                                    </div>
+                                    <div class="field">
+                                        <label>Konten</label>
+                                        <textarea class="trumbowygeditor" name="konten" required></textarea>
+                                    </div>
+                                    <div class="field">
+                                        <label>Gambar</label>
+                                        <input type="file" name="gambar" required>
+                                    </div>
+                                    <div class="field">
+                                        <label>Kategori</label>
+                                        <select name="kategori" class="ui fluid dropdown" required>
+                                            <option value="">Kategori</option>
+                                            <?php 
+                                            $categories = $this->db->get('KATEGORI')->result_array();
+                                            foreach ($categories as $category){
+                                                echo "<option value=\"".$category['KODE_KATEGORI']."\">".$category['NAMA_KATEGORI']."</option>";
+                                            } ?>
+                                        </select>
                                     </div>
                                     <button type="submit" class="ui submit button">Submit</button>
                                 </form>
@@ -152,6 +180,7 @@
                         </h5>
                         <div class="ui feed timeline">
                             <?php
+                            //var_dump($this->session);
                             // Like article and comment article
                             //var_dump($news);
                             foreach ($news as $item){
@@ -191,57 +220,7 @@
                 </div>
                 
             </div>
-            <div class="four wide column">
-                <h3 class="ui header">Permintaan Pertemanan</h3>
-                <div class="ui cards">
-                <?php if(isset($friendreq)) {foreach($friendreq as $req){ ?>
-                    <div class="card">
-                        <div class="content">
-                        <img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg">
-                        <div class="header">
-                            Elliot Fu
-                        </div>
-                        <div class="meta">
-                            Friends of Veronika
-                        </div>
-                        <div class="description">
-                            Elliot requested permission to view your contact details
-                        </div>
-                        </div>
-                        <div class="extra content">
-                        <div class="ui two buttons">
-                            <div class="ui basic green button">Approve</div>
-                            <div class="ui basic red button">Decline</div>
-                        </div>
-                        </div>
-                    </div>
-                <?php }
-                    if(count($friendreq<1)) echo "<h4>Tidak Ada</h4>";
-                } else {echo "<h5 class='ui header'>Tidak Ada</h5>";} ?>
-                </div>
-                <h3 class="ui header">Permintaan Permainan</h3>
-                <div class="ui cards">
-                <?php if(isset($friendreq)){foreach($playreq as $req){ ?>
-                    <div class="card">
-                        <div class="content">
-                        <img class="right floated mini ui image" src="/images/avatar/large/elliot.jpg">
-                        <div class="header">
-                            Petak Umpet
-                        </div>
-                        <div class="meta">
-                            Zahra
-                        </div>
-                        <div class="description">
-                            Zahra mengajak anda bermain Petak Umpet
-                        </div>
-                        </div>
-                        <div class="extra content">
-                        <div class="ui basic fluid red button">Mainkan</div>
-                        </div>
-                    </div>
-                <?php }} else {echo "<h4>Tidak Ada</h4>";} ?>
-                </div>
-            </div>
+            
         </div>
     </div>
 

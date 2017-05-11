@@ -78,7 +78,7 @@
 //    });
 </script>
     <script src="<?php echo base_url('public/js/phaser.min.js');?>"></script>
-    <script src="<?php echo base_url('public/games/scripts/'.$gamesfile.'.js');?>"></script>
+    <script src="<?php echo base_url('public/games/scripts/'.$gamedata['SCRIPT'].'');?>"></script>
 <?php include ("templates/public/footer.php"); ?>
 </body>
 </html>

@@ -5,7 +5,7 @@ class Berita_model extends PT_Model {
     }
 
     public function get_profil(){
-        return $this->db->query("SELECT NAMA_LENGKAP, AVATAR, BERITA, CREATED_AT FROM PENGGUNA, BERITA WHERE PENGGUNA.USERNAME=BERITA.USERNAME_PENGGUNA")->result_array();
+        return $this->db->query("SELECT NAMA_LENGKAP, USERNAME, AVATAR, BERITA, CREATED_AT FROM PENGGUNA, BERITA WHERE PENGGUNA.USERNAME=BERITA.USERNAME_PENGGUNA")->result_array();
         return $this->db->get('BERITA', 10)->result_array();
     }
 }
